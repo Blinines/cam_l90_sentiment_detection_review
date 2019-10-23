@@ -1,17 +1,18 @@
-import glob
+# -*- coding: utf-8 -*-
+from os import listdir
 from math import log
 from collections import Counter
 from settings import PATH_NEG, PATH_POS
 
-def sep_train_test(file_path, top_value_train):
+def sep_train_test(files_path, top_value_train):
 	train_files = []
 	test_files = []
 	
-	for index, file in enumerate(glob.glob(file_path)):
-		if index < top_value_train:
-			train_files.append(file)
-		else:
-			test_files.append(file)
+	for index, file in enumerate(listdir(files_path)):
+		if index < top_value_train and file.endswith(".txt"):
+			train_files.append(files_path+file)
+		if index >= top_value_train and file.endswith(".txt"):
+			test_files.append(files_path+file)
 	return train_files, test_files
 
 
@@ -23,6 +24,7 @@ def count_words(files_list, freq_cutoff):
 		for word_info in f:
 			try:
 				word = word_info.split()[0]
+				print(word)
 				word_count[word] += 1
 				word_total_count += 1
 			except:
@@ -61,8 +63,8 @@ def predict(file_path, freq_bow, n_neg, n_pos):
 	
 	
 
-TRAIN_FILE_NEG, TEST_FILE_NEG = sep_train_test(PATH_NEG, 900)
-TRAIN_FILE_POS, TEST_FILE_POS = sep_train_test(PATH_POS, 900)
+TRAIN_FILE_NEG, TEST_FILE_NEG = sep_train_test("./"+PATH_NEG, 900)
+TRAIN_FILE_POS, TEST_FILE_POS = sep_train_test("./"+PATH_POS, 900)
 
 FREQ_CUTOFF = 4
 BOW_NEG, NB_WORD_NEG = count_words(TRAIN_FILE_NEG, FREQ_CUTOFF)
