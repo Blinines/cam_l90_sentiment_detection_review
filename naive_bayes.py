@@ -7,17 +7,39 @@ from helpers_nb import create_bow_unigram, create_bow_bigram, create_freq_bow
 
 from settings import *
 
+class NaiveBayes:
+	def __init__(self, type):
+		# type in ['unigram', 'bigram', 'joint']
+		self.type = type
+	
+	def fit(self, X_train, freq_cutoff):
+		# X_train = {'NEG': TRAIN_FILE_NEG, 'POS': TRAIN_FILE_POS}
+		# freq_cutoff = {'unigram': 1, 'bigram': 4} for example
+		self.n_neg = len(X_train['NEG'])
+		self.n_pos = len(X_train['POS'])
 
-def calculate_proba_nb(file_path, freq_bow, n_class, n):
+		if self.type == 'unigram':
+			bow_neg_u, nb_word_neg_u = create_bow_unigram(X_train['NEG'], freq_cutoff['unigram'])
+			bow_pos_u, nb_word_pos_u = create_bow_unigram(X_train['POS'], freq_cutoff['unigram'])
+
+			self.freq_bow_u = {'NEG': create_freq_bow(bow_neg_u, nb_word_neg_u), 
+						  'POS': create_freq_bow(bow_pos_u, nb_word_pos_u)}
+		
+		else:
+			pass
+	
+	def predict(self, X_test):
+		# X_test = {'NEG': TEST_FILE_NEG, 'POS': TEST_FILE_POS}
+		return
+
+
+def calculate_proba_nb(feat, freq_bow, n_class, n):
 	res = 0
-	f = open(file_path, 'r')
-	for word_info in f: # iterating through all words of document
-		if len(word_info.split()) > 0:
-			word = word_info.split()[0]
-			if word in freq_bow.keys(): # word was seen during training
-				res += log(freq_bow[word])
-			else: # word unseen during training => algorithm stops
-				return float('-inf')
+	for f in feat: # iterating through all words of document
+		if f in freq_bow.keys(): # word was seen during training
+			res += log(freq_bow[f])
+		else: # word unseen during training => algorithm stops
+			return float('-inf')
 	res += log(float(n_class)/n)
 	return res
 
