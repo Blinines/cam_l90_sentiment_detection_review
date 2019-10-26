@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import codecs
 from collections import Counter
+from math import log
+from random import uniform
 
 def create_bow_unigram(files_list, freq_cutoff):
 	word_count = Counter()
@@ -68,10 +70,10 @@ def create_feat_with_s(file_path):
 
 
 def create_feat_no_s(feat_with_s):
-	features_no_s = []
-	for feat in features_with_s:
+	feat_no_s = []
+	for feat in feat_with_s:
 		if feat not in ['<s>', '</s>']:
-			features_no_s.append(feat)
+			feat_no_s.append(feat)
 	return feat_no_s
 
 
@@ -84,6 +86,29 @@ def create_feat_n_gram(feat_with_s, n):
 	feat_n_gram = [' '.join(l) for l in feat_n_gram]
 	return feat_n_gram
 
+
+def calculate_proba_nb(feat, freq_bow, n_class, n):
+	res = 0
+	for f in feat: # iterating through all words of document
+		if f in freq_bow.keys(): # word was seen during training
+			res += log(freq_bow[f])
+		else: # word unseen during training => algorithm stops
+			return float('-inf')
+	res += log(float(n_class)/n)
+	return res
+
+def predict_naive_bayes(feat, freq_bow, n_neg, n_pos, n):
+
+	proba_neg = calculate_proba_nb(feat, freq_bow['NEG'], n_neg, n)	
+	proba_pos = calculate_proba_nb(feat, freq_bow['POS'], n_pos, n)
+
+	if proba_pos > proba_neg:
+		return 1
+	elif proba_neg < proba_pos:
+		return 0
+	else: # presumably both equal to minus infinity => random choice
+		random_nb = uniform(0,1)
+		return 1 if random_nb <= 0.5 else 0
 
 # file_path = 'C:/Users/Public/Documents/l90/data-tagged/NEG/cv403_6721.tag'
 # test = create_feat_with_s(file_path=file_path)
