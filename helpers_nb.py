@@ -4,59 +4,11 @@ from collections import Counter
 from math import log
 from random import uniform
 
-def create_bow_unigram(files_list, freq_cutoff):
-	word_count = Counter()
-	word_total_count = 0
-	for file in files_list:
-		with codecs.open(file, 'r') as f:
-			for word_info in f:
-				if len(word_info.split()) > 0:
-					word = word_info.split()[0]
-					word_count[word] += 1
-					word_total_count += 1
 
-	return {word: word_count[word] for word in word_count.keys() if word_count[word] >= freq_cutoff}, word_total_count
-
-
-def create_bow_bigram(files_list, freq_cutoff):
-	word_count = Counter()
-	word_total_count = 0
-
-	for file in files_list:
-		with codecs.open(file, 'r') as f:
-			tags = f.read().splitlines()
-			tags = [tag.replace('\t', ' ') for tag in tags]
-			nb_word = len(tags)
-
-			# Treating first word
-			first_word_file = tags[0].split()[0]
-			word_count[' '.join(['<s>', first_word_file])] += 1
-			word_total_count += 1
-			first_word, second_word = first_word_file, None
-
-			for i in range(1, nb_word):
-				if first_word == '</s>':
-					second_word = '<s>'
-				else:
-					second_word_info = tags[i].split()
-					second_word = second_word_info[0] if len(second_word_info) > 0 else '</s>'
-
-				word_count[' '.join([first_word, second_word])] += 1
-				word_total_count += 1
-				first_word = second_word
-				
-
-	return {word: word_count[word] for word in word_count.keys() if word_count[word] >= freq_cutoff}, word_total_count
-
-
-def create_freq_bow(bow, nb_word):
-	freq_bow = {}
-	for word in bow.keys():
-		freq_bow[word] = bow[word]/float(nb_word)
-	return freq_bow
-
-
+# Creating features from files
 def create_feat_with_s(file_path):
+	# From one file returning all words including beginning and end of sentence
+	# Beginning => <s>, End => </s>
 	features_with_s = ['<s>']
 	f = open(file_path, 'r')
 	for word_info in f:
@@ -70,6 +22,7 @@ def create_feat_with_s(file_path):
 
 
 def create_feat_no_s(feat_with_s):
+	# Removing sentence markers from the features
 	feat_no_s = []
 	for feat in feat_with_s:
 		if feat not in ['<s>', '</s>']:
@@ -78,6 +31,7 @@ def create_feat_no_s(feat_with_s):
 
 
 def create_feat_n_gram(feat_with_s, n):
+	# Creating features for n gram, incorporating sentence markers
 	if len(feat_with_s) < n:
 		return []
 	feat_n_gram = [feat_with_s[:n]]
@@ -87,13 +41,52 @@ def create_feat_n_gram(feat_with_s, n):
 	return feat_n_gram
 
 
+def create_feat(feat_with_s, file_path, n):
+	# Creating features list for the file with n words
+	if n == 1:
+		return create_feat_no_s(feat_with_s=feat_with_s)
+	else:
+		return create_feat_n_gram(feat_with_s=feat_with_s, n=n)
+
+
+# Creating BoW (count and frequency)
+def create_bow(files_list, freq_cutoff, n):
+	# BoW, count
+	word_count = Counter()
+	word_total_count = 0
+	for file_path in files_list:
+		if n == 1:
+			feat = create_feat_no_s(feat_with_s=create_feat_with_s(file_path))
+		else:
+			feat_with_s = create_feat_with_s(file_path=file_path)
+			feat = create_feat_n_gram(feat_with_s=feat_with_s, n=n)
+		for f in feat:
+			word_count[f] += 1
+			word_total_count += 1
+
+	return {word: word_count[word] for word in word_count.keys() if word_count[word] >= freq_cutoff}, word_total_count
+
+
+def create_freq_bow(bow, nb_word, smoothing):
+	# Bow, frequency
+	freq_bow = {}
+	for word in bow.keys():
+		freq_bow[word] = (bow[word] + smoothing)/float(nb_word * (smoothing + 1))
+	freq_bow[0] = smoothing/(float(nb_word * (smoothing + 1)))
+	return freq_bow
+
+
+# Applying Bayes rule
 def calculate_proba_nb(feat, freq_bow, n_class, n):
 	res = 0
 	for f in feat: # iterating through all words of document
 		if f in freq_bow.keys(): # word was seen during training
 			res += log(freq_bow[f])
 		else: # word unseen during training => algorithm stops
-			return float('-inf')
+			if freq_bow[0] == 0:
+				return float('-inf')
+			else:
+				res += log(freq_bow[0])
 	res += log(float(n_class)/n)
 	return res
 
@@ -110,6 +103,10 @@ def predict_naive_bayes(feat, freq_bow, n_neg, n_pos, n):
 		random_nb = uniform(0,1)
 		return 1 if random_nb <= 0.5 else 0
 
+
 # file_path = 'C:/Users/Public/Documents/l90/data-tagged/NEG/cv403_6721.tag'
-# test = create_feat_with_s(file_path=file_path)
-# print(create_feat_n_gram(test, 3))
+# test_with_s = create_feat_with_s(file_path=file_path)
+# test_no_s = create_feat_no_s(feat_with_s=test_with_s)
+# test_bigram = create_feat_n_gram(feat_with_s=test_with_s, n=2)
+# a, b = create_bow(files_list=[file_path], freq_cutoff=0, n=1) 
+# print(a)

@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
 from helpers_cv import sep_train_test
-from helpers_nb import create_bow_unigram, create_bow_bigram, create_freq_bow, \
-					   create_feat_no_s, create_feat_with_s, create_feat_n_gram, \
-					   predict_naive_bayes
-
+from helpers_nb import create_bow, create_freq_bow, create_feat, \
+					   create_feat_with_s, create_feat_n_gram, predict_naive_bayes
+from helpers import sign_test, get_accuracy
 from settings import *
 
+
 class NaiveBayes:
-	def __init__(self, type):
+	def __init__(self, t, smoothing):
 		# type in ['unigram', 'bigram', 'joint']
-		self.type = type
+		self.type_to_calc = {'unigram': [1], 'bigram': [2], 'joint': [1, 2]}
+		self.type = t
+		self.smoothing = smoothing
 	
 	def is_valid_nb(self):
 		if self.type not in ['unigram', 'bigram', 'joint']:
@@ -23,33 +25,20 @@ class NaiveBayes:
 		self.n_pos = len(X_train['POS'])
 		self.n = self.n_neg + self.n_pos
 
-		if self.type == 'unigram':
-			bow_neg, nb_word_neg = create_bow_unigram(X_train['NEG'], freq_cutoff['unigram'])
-			bow_pos, nb_word_pos = create_bow_unigram(X_train['POS'], freq_cutoff['unigram'])
+		bow_neg, nb_word_neg = {}, 0
+		bow_pos, nb_word_pos = {}, 0
 
-			self.freq_bow = {'NEG': create_freq_bow(bow_neg, nb_word_neg), 
-						  	 'POS': create_freq_bow(bow_pos, nb_word_pos)}
-		
-		elif self.type == 'bigram':
-			bow_neg, nb_word_neg = create_bow_bigram(X_train['NEG'], freq_cutoff['bigram'])
-			bow_pos, nb_word_pos = create_bow_bigram(X_train['POS'], freq_cutoff['bigram'])
+		for n in self.type_to_calc[self.type]:
+			curr_bow_neg, curr_nb_word_neg = create_bow(X_train['NEG'], freq_cutoff[n], n)
+			curr_bow_pos, curr_nb_word_pos = create_bow(X_train['POS'], freq_cutoff[n], n)
 
-			self.freq_bow = {'NEG': create_freq_bow(bow_neg, nb_word_neg), 
-						  	 'POS': create_freq_bow(bow_pos, nb_word_pos)}
-		
-		else:  #self.type = 'joint'
-			bow_neg_u, nb_word_neg_u = create_bow_unigram(X_train['NEG'], freq_cutoff['unigram'])
-			bow_pos_u, nb_word_pos_u = create_bow_unigram(X_train['POS'], freq_cutoff['unigram'])
-			bow_neg_b, nb_word_neg_b = create_bow_bigram(X_train['NEG'], freq_cutoff['bigram'])
-			bow_pos_b, nb_word_pos_b = create_bow_bigram(X_train['POS'], freq_cutoff['bigram'])
+			bow_neg.update(curr_bow_neg)
+			nb_word_neg += curr_nb_word_neg
+			bow_pos.update(curr_bow_pos)
+			nb_word_pos += curr_nb_word_pos
 
-			bow_neg_u.update(bow_neg_b)
-			nb_word_neg = nb_word_neg_u+nb_word_neg_b
-			bow_pos_u.update(bow_pos_b)
-			nb_word_pos = nb_word_pos_u+nb_word_pos_b
-
-			self.freq_bow = {'NEG': create_freq_bow(bow_neg_u, nb_word_neg), 
-						  	 'POS': create_freq_bow(bow_pos_u, nb_word_pos)}
+		self.freq_bow = {'NEG': create_freq_bow(bow_neg, nb_word_neg, self.smoothing), 
+						 'POS': create_freq_bow(bow_pos, nb_word_pos, self.smoothing)}
 	
 	def predict(self, X_test):
 		# X_test = {'NEG': TEST_FILE_NEG, 'POS': TEST_FILE_POS}
@@ -58,83 +47,38 @@ class NaiveBayes:
 			for file_path in X_test[val]:
 				feat_with_s_u = create_feat_with_s(file_path=file_path)
 
-				if self.type == 'unigram':
-					feat = create_feat_no_s(feat_with_s=feat_with_s_u)
-				elif self.type == 'bigram':
-					feat = create_feat_n_gram(feat_with_s=feat_with_s_u, n=2)
-				else: #self.type = 'joint'
-					feat = create_feat_no_s(feat_with_s=feat_with_s_u) + \
-						   create_feat_n_gram(feat_with_s=feat_with_s_u, n=2)
+				feat = []
+				for nb in self.type_to_calc[self.type]:
+					feat += create_feat(feat_with_s=feat_with_s_u, file_path=file_path, n=nb)
 				
 				predicted_file = predict_naive_bayes(feat=feat, freq_bow=self.freq_bow, 
 													 n_neg=self.n_neg, n_pos=self.n_pos, n=self.n)
 				y[val].append(predicted_file)
 		return y
 
-
-if False:
-	TRAIN_FILE_NEG, TEST_FILE_NEG = sep_train_test(PATH_NEG_TAG, TRAIN_TEST_SEP_VALUE)
-	TRAIN_FILE_POS, TEST_FILE_POS = sep_train_test(PATH_POS_TAG, TRAIN_TEST_SEP_VALUE)
-
-	N_NEG = len(TRAIN_FILE_NEG)
-	N_POS = len(TRAIN_FILE_POS)
-
-	BOW_NEG_U, NB_WORD_NEG_U = create_bow_unigram(TRAIN_FILE_NEG, FREQ_CUTOFF_UNIGRAM)
-	BOW_POS_U, NB_WORD_POS_U = create_bow_unigram(TRAIN_FILE_POS, FREQ_CUTOFF_UNIGRAM)
-
-	BOW_NEG_B, NB_WORD_NEG_B = create_bow_unigram(TRAIN_FILE_NEG, FREQ_CUTOFF_BIGRAM)
-	BOW_POS_B, NB_WORD_POS_B = create_bow_unigram(TRAIN_FILE_POS, FREQ_CUTOFF_BIGRAM)
-
-	# Using unigrams only
-	PREDICT_U = True
-	if PREDICT_U:	
-		FREQ_BOW_U = {'NEG': create_freq_bow(BOW_NEG_U, NB_WORD_NEG_U), 
-					'POS': create_freq_bow(BOW_POS_U, NB_WORD_POS_U)}
-		FP_TN_TABLE = [[0, 0], [0, 0]]
-
-		for test_file_neg_path in TEST_FILE_NEG:
-			predicted = predict_naive_bayes(test_file_neg_path, FREQ_BOW_U, N_NEG, N_POS, N_NEG+N_POS)
-			if predicted == 0:
-				FP_TN_TABLE[1][1] += 1
-			else:
-				FP_TN_TABLE[0][1] += 1
-
-		for test_file_pos_path in TEST_FILE_POS:
-			predicted = predict_naive_bayes(test_file_pos_path, FREQ_BOW_U, N_NEG, N_POS, N_NEG+N_POS)
-			if predicted == 0:
-				FP_TN_TABLE[1][0] += 1
-			else:
-				FP_TN_TABLE[0][0] += 1
-
-		print('Unigram only')
-		print(FP_TN_TABLE)
-		print('')
-
-
 TRAIN_FILE_NEG, TEST_FILE_NEG = sep_train_test(PATH_NEG_TAG, TRAIN_TEST_SEP_VALUE)
 TRAIN_FILE_POS, TEST_FILE_POS = sep_train_test(PATH_POS_TAG, TRAIN_TEST_SEP_VALUE)
 X_train = {'NEG': TRAIN_FILE_NEG, 'POS': TRAIN_FILE_POS}
-FREQ_CUTOFF = {'unigram': FREQ_CUTOFF_UNIGRAM, 'bigram': FREQ_CUTOFF_BIGRAM} 
+FREQ_CUTOFF = {1: FREQ_CUTOFF_UNIGRAM, 2: FREQ_CUTOFF_BIGRAM} 
 X_test = {'NEG': TEST_FILE_NEG, 'POS': TEST_FILE_POS}
-#NEG': [TEST_FILE_NEG[0]], 'POS': []}
 
-
-def get_accuracy(y):
-	count, tot = 0, 0
-	for elt in y['NEG']:
-		if elt == 0:
-			count += 1
-		tot += 1
-	for elt in y['POS']:
-		if elt == 1:
-			count += 1
-		tot += 1
-	return float(count)/tot 
+ 
 
 
 for t in ['unigram', 'bigram', 'joint']:
-# for t in ['bigram']:
-	clf = NaiveBayes(type=t)
-	clf.fit(X_train=X_train, freq_cutoff=FREQ_CUTOFF)
-	y = clf.predict(X_test=X_test)
-	print("Type {0}: accuracy is {1}".format(t, get_accuracy(y)))
+# for t in ['unigram']:
+	print('Type: {0}'.format(t))
+	 
+	clf_1 = NaiveBayes(t=t, smoothing=1)
+	clf_1.fit(X_train=X_train, freq_cutoff=FREQ_CUTOFF)
+	y_1 = clf_1.predict(X_test=X_test)
+	print("Smoothing {0}: accuracy is {1}".format(1, get_accuracy(y_1)))
+
+	clf_2 = NaiveBayes(t=t, smoothing=0)
+	clf_2.fit(X_train=X_train, freq_cutoff=FREQ_CUTOFF)
+	y_2 = clf_2.predict(X_test=X_test)
+	print("Smoothing {0}: accuracy is {1}".format(0, get_accuracy(y_2)))
+
+	print(sign_test(y_1, y_2))
+	print('')
+	
