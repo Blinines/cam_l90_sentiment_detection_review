@@ -28,3 +28,28 @@ def get_train_test_rr_fold(folders, index):
 		if fold != index:
 			train_files += folders[fold]
 	return train_files, test_files
+
+
+class RoundRobinCV:
+	def __init__(self, clf, path_neg, path_pos, mod=10):
+		self.clf = clf
+		self.all_folders = {'NEG': folder_round_robin(files_path=path_neg, mod=mod),
+							'POS': folder_round_robin(files_path=path_pos, mod=mod)}
+		self.mod = mod
+	
+
+	def cross_validate(self):
+		results = {}
+		for index in range(self.mod):
+			X_train, X_test = {}, {}
+			for val in ['NEG', 'POS']: # retrieving train files and test files
+				curr_folders = self.all_folders[val]
+				curr_train, curr_test = get_train_test_rr_fold(folders=curr_folders, index=index)
+				X_train[val] = curr_train
+				X_test[val] = curr_test
+
+			curr_clf = self.clf
+			curr_clf.fit(X_train)
+			results[index] = curr_clf.predict(X_test)
+
+		return results
