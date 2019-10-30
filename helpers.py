@@ -11,7 +11,7 @@ def get_accuracy(y):
 			count += 1
 		tot += 1
 	return float(count)/tot
-
+    
 
 def sign_test(y_1, y_2):
     # plus : clf_1 better than clf_2

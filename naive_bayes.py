@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from helpers_cv import sep_train_test, RoundRobinCV
+from helpers_cv import sep_train_test
 from helpers_nb import create_bow, create_freq_bow, create_feat, \
 					   create_feat_with_s, create_feat_n_gram, predict_naive_bayes
 from helpers import sign_test, get_accuracy
@@ -40,8 +40,9 @@ class NaiveBayes:
 			bow_pos.update(curr_bow_pos)
 			nb_word_pos += curr_nb_word_pos
 
-		self.freq_bow = {'NEG': create_freq_bow(bow_neg, nb_word_neg, self.smoothing), 
-						 'POS': create_freq_bow(bow_pos, nb_word_pos, self.smoothing)}
+		self.distinct_w_count = len(set(bow_neg.keys()).union(bow_pos.keys()))
+		self.freq_bow = {'NEG': create_freq_bow(bow_neg, nb_word_neg, self.smoothing, self.distinct_w_count), 
+						 'POS': create_freq_bow(bow_pos, nb_word_pos, self.smoothing, self.distinct_w_count)}
 	
 
 	def predict(self, X_test):
@@ -87,10 +88,3 @@ if False:
 		print('')
 
 
-CLF = NaiveBayes(t='unigram', smoothing=1, freq_cutoff={1: FREQ_CUTOFF_UNIGRAM, 2: FREQ_CUTOFF_BIGRAM})
-RR = RoundRobinCV(clf=CLF, path_neg=PATH_NEG_TAG, path_pos=PATH_POS_TAG, mod=10)
-results = RR.cross_validate()
-print(results)
-print("")
-for index in results.keys():
-	print("{0} folder as test data: accuracy is {1}".format(index, get_accuracy(results[index])))

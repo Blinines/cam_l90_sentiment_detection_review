@@ -67,12 +67,12 @@ def create_bow(files_list, freq_cutoff, n):
 	return {word: word_count[word] for word in word_count.keys() if word_count[word] >= freq_cutoff}, word_total_count
 
 
-def create_freq_bow(bow, nb_word, smoothing):
+def create_freq_bow(bow, nb_word, smoothing, distinct_w_count):
 	# Bow, frequency
 	freq_bow = {}
 	for word in bow.keys():
-		freq_bow[word] = (bow[word] + smoothing)/float(nb_word * (smoothing + 1))
-	freq_bow[0] = smoothing/(float(nb_word * (smoothing + 1)))
+		freq_bow[word] = (bow[word] + smoothing)/float(nb_word + smoothing * distinct_w_count)
+	freq_bow[0] = smoothing/float(nb_word + smoothing * distinct_w_count)
 	return freq_bow
 
 
