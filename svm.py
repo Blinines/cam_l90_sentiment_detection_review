@@ -1,29 +1,46 @@
 # -*- coding: utf-8 -*-
-import smart_open
-import gensim
-from os import listdir
-from private import PATH_PROJECT
+from sklearn import svm
+from gensim.models.doc2vec import Doc2Vec
+from helpers_cv import sep_train_test
+from settings import PATH_NEG_TAG, PATH_POS_TAG
+from helpers_nb import create_feat_with_s, create_feat_no_s
 
-svm_train_folder_dir = ['aclImdb/test/neg/', 'aclImdb/test/pos/', 'aclImdb/train/neg/', 'aclImdb/train/pos/']
+X_train_neg, X_test_blind_neg = sep_train_test(files_path=PATH_NEG_TAG, top_value_train=900)
+X_train_pos, X_test_blind_pos = sep_train_test(files_path=PATH_POS_TAG, top_value_train=900)
 
-svm_train_file_dir = []
-for folder in svm_train_folder_dir:
-    svm_train_file_dir += [PATH_PROJECT + folder + file_name for file_name in listdir(PATH_PROJECT + folder)]
+X_train = X_train_neg + X_train_pos
+y_train = [0]*len(X_train_neg) + [1]*len(X_train_pos)
+X_test_blind = X_test_blind_neg + X_test_blind_pos
+y_test_blind = [0]*len(X_test_blind_neg) + [1]*len(X_test_blind_pos)
 
 
-def read_corpus(files_path, tokens_only=False):
-    for file_path in files_path:
-        with smart_open.open(file_path, encoding="iso-8859-1") as f:
-            for i, line in enumerate(f):
-                tokens = gensim.utils.simple_preprocess(line)
-                if tokens_only:
-                    yield tokens
-                else:
-                    # For training data, add tags
-                    yield gensim.models.doc2vec.TaggedDocument(tokens, [i])
+# Loading model
+model = Doc2Vec.load("models_svm/first_model")
 
-train_corpus = list(read_corpus(svm_train_file_dir))
-# test_corpus = list(read_corpus(lee_test_file, tokens_only=True))
+# test_corpus = list(read_corpus(X_train, tokens_only=True))
+# blind_corpus = list(read_corpus(X_test_blind, tokens_only=True))
 
-with open("train_corpus.json", "w") as fp:
-    json.dump(train_corpus, fp)
+X_train_vectors = []
+for elt in X_train:
+    features = create_feat_no_s(feat_with_s=create_feat_with_s(file_path=elt))
+    X_train_vectors.append(model.infer_vector(features))
+
+
+X_test_blind_vectors = []
+for elt in X_test_blind:
+    features = create_feat_no_s(feat_with_s=create_feat_with_s(file_path=elt))
+    X_test_blind_vectors.append(model.infer_vector(features))
+
+clf = svm.SVC(gamma='scale')
+clf.fit(X_train_vectors, y_train) 
+y_predicted = clf.predict(X_test_blind_vectors)
+
+correct = 0
+for index, elt in enumerate(y_predicted):
+    if elt == y_test_blind[index]:
+        correct += 1
+print("Accuracy: {0}".format(float(correct)/len(y_predicted)))
+
+
+
+

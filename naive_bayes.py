@@ -62,7 +62,7 @@ class NaiveBayes:
 		return y
 
 
-if True:
+if False:
 	TRAIN_FILE_NEG, TEST_FILE_NEG = sep_train_test(PATH_NEG_TAG, TRAIN_TEST_SEP_VALUE)
 	TRAIN_FILE_POS, TEST_FILE_POS = sep_train_test(PATH_POS_TAG, TRAIN_TEST_SEP_VALUE)
 	X_train = {'NEG': TRAIN_FILE_NEG, 'POS': TRAIN_FILE_POS}

@@ -10,7 +10,7 @@ def create_feat_with_s(file_path):
 	# From one file returning all words including beginning and end of sentence
 	# Beginning => <s>, End => </s>
 	features_with_s = ['<s>']
-	f = open(file_path, 'r')
+	f = open(file_path, 'r', encoding='utf8')
 	for word_info in f:
 		word_info_l = word_info.split()
 		if len(word_info_l) > 0:
@@ -106,10 +106,11 @@ def predict_naive_bayes(feat, freq_bow, n_neg, n_pos, n):
 		return 1 if random_nb <= 0.5 else 0
 
 
-# file_path_1 = 'C:/Users/Public/Documents/l90/data-tagged/NEG/cv403_6721.tag'
+# file_path_1 = 'C:/Users/Public/Documents/l90/data-tagged/POS/cv622_8147.tag'
 # file_path_2 = 'C:/Users/Public/Documents/l90/data-tagged/NEG/cv007_4992.tag'
 # test_with_s_1 = create_feat_with_s(file_path=file_path_1)
 # test_no_s_1 = create_feat_no_s(feat_with_s=test_with_s_1)
+# print(test_no_s_1)
 # test_with_s_2 = create_feat_with_s(file_path=file_path_2)
 # test_no_s_2 = create_feat_no_s(feat_with_s=test_with_s_2)
 #print(test_no_s)
