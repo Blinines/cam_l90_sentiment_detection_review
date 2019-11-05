@@ -2,7 +2,7 @@
 import json
 from helpers import get_accuracy, sign_test, p_value
 
-with open('results_2019-11-04.json') as json_file:
+with open('results_nb.json') as json_file:
     data = json.load(json_file)
 
 # getting accuracy per testing fold and averaged accuracy
@@ -33,7 +33,11 @@ def concat_prediction(data):
 
 
 # printing results
+<<<<<<< HEAD
 print_result_acc = True
+=======
+print_result_acc = False
+>>>>>>> 170fe6d9bf916a951c174e8488d51634a0250cca
 if print_result_acc:
     for t in acc.keys():
         for smoothing in data[t].keys():
@@ -41,7 +45,11 @@ if print_result_acc:
             print(acc[t][smoothing])
             print('')
 
+<<<<<<< HEAD
 print_sign_test = False
+=======
+print_sign_test = True
+>>>>>>> 170fe6d9bf916a951c174e8488d51634a0250cca
 if print_sign_test:
     concat = concat_prediction(data)
     models = sorted(concat.keys())
