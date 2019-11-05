@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from helpers_cv import sep_train_test
 from helpers_nb import create_bow, create_freq_bow, create_feat, \
-					   create_feat_with_s, create_feat_n_gram, predict_naive_bayes
+					   create_feat_no_s, create_feat_n_gram, predict_naive_bayes
 from helpers import sign_test, get_accuracy
 from settings import *
 
@@ -50,11 +50,11 @@ class NaiveBayes:
 		y = {'NEG': [], 'POS': []}
 		for val in ['NEG', 'POS']:
 			for file_path in X_test[val]:
-				feat_with_s_u = create_feat_with_s(file_path=file_path)
+				feat_no_s_1 = create_feat_no_s(file_path=file_path)
 
 				feat = []
 				for nb in self.type_to_calc[self.type]:
-					feat += create_feat(feat_with_s=feat_with_s_u, file_path=file_path, n=nb)
+					feat += create_feat(feat_no_s_1=feat_no_s_1, file_path=file_path, n=nb)
 				
 				predicted_file = predict_naive_bayes(feat=feat, freq_bow=self.freq_bow, 
 													 n_neg=self.n_neg, n_pos=self.n_pos, n=self.n)
@@ -62,7 +62,7 @@ class NaiveBayes:
 		return y
 
 
-if True:
+if False:
 	TRAIN_FILE_NEG, TEST_FILE_NEG = sep_train_test(PATH_NEG_TAG, TRAIN_TEST_SEP_VALUE)
 	TRAIN_FILE_POS, TEST_FILE_POS = sep_train_test(PATH_POS_TAG, TRAIN_TEST_SEP_VALUE)
 	X_train = {'NEG': TRAIN_FILE_NEG, 'POS': TRAIN_FILE_POS}

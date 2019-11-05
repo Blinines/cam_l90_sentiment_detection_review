@@ -7,26 +7,26 @@ def sep_train_test(files_path, top_value_train):
 	test_files = []
 	
 	for index, file_name in enumerate(listdir(files_path)):
-		if index < top_value_train and file_name.endswith(".tag"):
+		if index < top_value_train:  # and file_name.endswith(".tag"):
 			train_files.append(PATH_PROJECT+files_path+file_name)
-		if index >= top_value_train and file_name.endswith(".tag"):
+		if index >= top_value_train:  # and file_name.endswith(".tag"):
 			test_files.append(PATH_PROJECT+files_path+file_name)
 	return train_files, test_files
+
+
+def folder_round_robin(files_path, mod):
+		folders = {nb: [] for nb in range(mod)}
+		for index, file_name in enumerate(listdir(files_path)):
+			folders[index%mod].append(PATH_PROJECT+files_path+file_name)
+		return folders
 
 
 class RoundRobinCV:
 	def __init__(self, clf, path_neg, path_pos, mod=10):
 		self.clf = clf
-		self.all_folders = {'NEG': self.folder_round_robin(files_path=path_neg, mod=mod),
-							'POS': self.folder_round_robin(files_path=path_pos, mod=mod)}
+		self.all_folders = {'NEG': folder_round_robin(files_path=path_neg, mod=mod),
+							'POS': folder_round_robin(files_path=path_pos, mod=mod)}
 		self.mod = mod
-	
-
-	def folder_round_robin(self, files_path, mod):
-		folders = {nb: [] for nb in range(mod)}
-		for index, file_name in enumerate(listdir(files_path)):
-			folders[index%mod].append(PATH_PROJECT+files_path+file_name)
-		return folders
 	
 
 	def get_train_test_rr_fold(self, folders, index):

@@ -6,47 +6,34 @@ from random import uniform
 
 
 # Creating features from files
-def create_feat_with_s(file_path):
-	# From one file returning all words including beginning and end of sentence
-	# Beginning => <s>, End => </s>
-	features_with_s = ['<s>']
-	f = open(file_path, 'r')
+def create_feat_no_s(file_path):
+	# From one file returning all words 
+	feat_no_s = []
+	f = open(file_path, 'r', encoding='utf8')
 	for word_info in f:
 		word_info_l = word_info.split()
 		if len(word_info_l) > 0:
-			features_with_s.append(word_info_l[0])
-		else:
-			features_with_s.append('</s>')
-			features_with_s.append('<s>')
-	return features_with_s
-
-
-def create_feat_no_s(feat_with_s):
-	# Removing sentence markers from the features
-	feat_no_s = []
-	for feat in feat_with_s:
-		if feat not in ['<s>', '</s>']:
-			feat_no_s.append(feat)
+			feat_no_s.append(word_info_l[0])
 	return feat_no_s
 
 
-def create_feat_n_gram(feat_with_s, n):
+def create_feat_n_gram(feat_no_s, n):
 	# Creating features for n gram, incorporating sentence markers
-	if len(feat_with_s) < n:
+	if len(feat_no_s) < n:
 		return []
-	feat_n_gram = [feat_with_s[:n]]
-	for feat in feat_with_s[n:]:
+	feat_n_gram = [feat_no_s[:n]]
+	for feat in feat_no_s[n:]:
 		feat_n_gram.append(feat_n_gram[-1][-n+1:] + [feat])
 	feat_n_gram = [' '.join(l) for l in feat_n_gram]
 	return feat_n_gram
 
 
-def create_feat(feat_with_s, file_path, n):
+def create_feat(feat_no_s_1, file_path, n):
 	# Creating features list for the file with n words
 	if n == 1:
-		return create_feat_no_s(feat_with_s=feat_with_s)
+		return feat_no_s_1
 	else:
-		return create_feat_n_gram(feat_with_s=feat_with_s, n=n)
+		return create_feat_n_gram(feat_no_s=feat_no_s_1, n=n)
 
 
 # Creating BoW (count and frequency)
@@ -55,11 +42,8 @@ def create_bow(files_list, freq_cutoff, n):
 	word_count = Counter()
 	word_total_count = 0
 	for file_path in files_list:
-		if n == 1:
-			feat = create_feat_no_s(feat_with_s=create_feat_with_s(file_path))
-		else:
-			feat_with_s = create_feat_with_s(file_path=file_path)
-			feat = create_feat_n_gram(feat_with_s=feat_with_s, n=n)
+		feat_no_s_1 = create_feat_no_s(file_path=file_path)
+		feat = create_feat(feat_no_s_1=feat_no_s_1, file_path=file_path, n=n)
 		for f in feat:
 			word_count[f.lower()] += 1
 			# word_count[f] += 1
@@ -106,10 +90,11 @@ def predict_naive_bayes(feat, freq_bow, n_neg, n_pos, n):
 		return 1 if random_nb <= 0.5 else 0
 
 
-# file_path_1 = 'C:/Users/Public/Documents/l90/data-tagged/NEG/cv403_6721.tag'
+# file_path_1 = 'C:/Users/Public/Documents/l90/data-tagged/POS/cv622_8147.tag'
 # file_path_2 = 'C:/Users/Public/Documents/l90/data-tagged/NEG/cv007_4992.tag'
 # test_with_s_1 = create_feat_with_s(file_path=file_path_1)
 # test_no_s_1 = create_feat_no_s(feat_with_s=test_with_s_1)
+# print(test_no_s_1)
 # test_with_s_2 = create_feat_with_s(file_path=file_path_2)
 # test_no_s_2 = create_feat_no_s(feat_with_s=test_with_s_2)
 #print(test_no_s)
