@@ -47,7 +47,7 @@ class NaiveBayes:
 
 	def predict(self, X_test):
 		# X_test = {'NEG': TEST_FILE_NEG, 'POS': TEST_FILE_POS}
-		y = {'NEG': [], 'POS': []}
+		y = {'NEG': [], 'POS': [], 'random': 0}
 		for val in ['NEG', 'POS']:
 			for file_path in X_test[val]:
 				feat_no_s_1 = create_feat_no_s(file_path=file_path)
@@ -56,9 +56,10 @@ class NaiveBayes:
 				for nb in self.type_to_calc[self.type]:
 					feat += create_feat(feat_no_s_1=feat_no_s_1, file_path=file_path, n=nb)
 				
-				predicted_file = predict_naive_bayes(feat=feat, freq_bow=self.freq_bow, 
-													 n_neg=self.n_neg, n_pos=self.n_pos, n=self.n)
+				predicted_file, randomed = predict_naive_bayes(feat=feat, freq_bow=self.freq_bow, 
+													 		   n_neg=self.n_neg, n_pos=self.n_pos, n=self.n)
 				y[val].append(predicted_file)
+				y['random'] += randomed
 		return y
 
 

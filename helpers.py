@@ -1,4 +1,14 @@
 # -*- coding: utf-8 -*-
+import numpy as np
+from decimal import Decimal
+
+def get_variance(l):
+    # Computing variance of list
+    mean_val = np.mean(l)
+    sum_val = [None] * len(l)
+    for index, val in enumerate(l):
+        sum_val[index] = (val - mean_val)**2
+    return np.sum(sum_val)
 
 def get_accuracy(y):
 	count, tot = 0, 0
@@ -28,9 +38,9 @@ def sign_test(y_1, y_2):
             numbers['null'] += 1
     
     for i in range(len(y_1['POS'])):
-        if y_1['POS'][i] == 1 and y_2['NEG'][i] == 0:
+        if y_1['POS'][i] == 1 and y_2['POS'][i] == 0:
             numbers['plus'] += 1
-        elif y_1['POS'][i] == 0 and y_2['NEG'][i] == 1:
+        elif y_1['POS'][i] == 0 and y_2['POS'][i] == 1:
             numbers['minus'] += 1
         else:
             numbers['null'] += 1
@@ -56,8 +66,8 @@ def p_value(numbers, q):
 
     res = 0
     for i in range(k+1):
-        res += binomial(N, i) * (q**i) * ((1-q)**(N-i))
-    return 2*res
+        res += Decimal(binomial(N, i)) * Decimal((q**i)) * Decimal(((1-q)**(N-i)))
+    return float(2*res)
 
 
 # q = 0.5

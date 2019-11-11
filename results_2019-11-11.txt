@@ -1,0 +1,47 @@
+Type NB: unigram, smoothing: 0 
+Process began at: 2019-11-11 10:44:35.358000 
+0 folder as test data: accuracy is 0.505 
+1 folder as test data: accuracy is 0.49 
+2 folder as test data: accuracy is 0.515 
+3 folder as test data: accuracy is 0.49 
+4 folder as test data: accuracy is 0.45 
+5 folder as test data: accuracy is 0.51 
+6 folder as test data: accuracy is 0.495 
+7 folder as test data: accuracy is 0.435 
+8 folder as test data: accuracy is 0.49 
+9 folder as test data: accuracy is 0.505 
+Process ended at: 2019-11-11 10:45:19.199000 
+Process took: 0:00:43.841000 
+
+Type NB: unigram, smoothing: 1 
+Process began at: 2019-11-11 10:45:19.199000 
+0 folder as test data: accuracy is 0.77 
+1 folder as test data: accuracy is 0.84 
+2 folder as test data: accuracy is 0.805 
+3 folder as test data: accuracy is 0.84 
+4 folder as test data: accuracy is 0.765 
+5 folder as test data: accuracy is 0.83 
+6 folder as test data: accuracy is 0.805 
+7 folder as test data: accuracy is 0.785 
+8 folder as test data: accuracy is 0.83 
+9 folder as test data: accuracy is 0.815 
+Process ended at: 2019-11-11 10:58:40.573000 
+Process took: 0:13:21.374000 
+
+Type NB: bigram, smoothing: 0 
+Process began at: 2019-11-11 10:58:40.573000 
+0 folder as test data: accuracy is 0.45 
+1 folder as test data: accuracy is 0.475 
+2 folder as test data: accuracy is 0.49 
+3 folder as test data: accuracy is 0.42 
+4 folder as test data: accuracy is 0.545 
+5 folder as test data: accuracy is 0.545 
+6 folder as test data: accuracy is 0.52 
+7 folder as test data: accuracy is 0.53 
+8 folder as test data: accuracy is 0.5 
+9 folder as test data: accuracy is 0.51 
+Process ended at: 2019-11-11 10:59:27.352000 
+Process took: 0:00:46.779000 
+
+Type NB: bigram, smoothing: 1 
+Process began at: 2019-11-11 10:59:27.352000 

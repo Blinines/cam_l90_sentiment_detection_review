@@ -9,7 +9,11 @@ from random import uniform
 def create_feat_no_s(file_path):
 	# From one file returning all words 
 	feat_no_s = []
-	f = open(file_path, 'r', encoding='utf8')
+	try:
+		f = open(file_path, 'r')
+	except:
+		f = open(file_path, 'r', encoding='utf8')
+	
 	for word_info in f:
 		word_info_l = word_info.split()
 		if len(word_info_l) > 0:
@@ -77,17 +81,20 @@ def calculate_proba_nb(feat, freq_bow, n_class, n):
 	return res
 
 def predict_naive_bayes(feat, freq_bow, n_neg, n_pos, n):
+	# return (a,b)
+	# a : prediction, b : 1 if predicted with random choice, 0 else
 
 	proba_neg = calculate_proba_nb(feat, freq_bow['NEG'], n_neg, n)	
 	proba_pos = calculate_proba_nb(feat, freq_bow['POS'], n_pos, n)
 
 	if proba_pos > proba_neg:
-		return 1
+		return (1, False)
 	elif proba_neg > proba_pos:
-		return 0
+		return (0, False)
 	else: # presumably both equal to minus infinity => random choice
 		random_nb = uniform(0,1)
-		return 1 if random_nb <= 0.5 else 0
+		predicted = 1 if random_nb <= 0.5 else 0
+		return (predicted, True)
 
 
 # file_path_1 = 'C:/Users/Public/Documents/l90/data-tagged/POS/cv622_8147.tag'

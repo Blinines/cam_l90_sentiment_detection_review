@@ -39,41 +39,47 @@ class Doc2VecModel(BaseEstimator):
 
 
 
-param_grid = {'doc2vec__dm': [0, 1],
-              'doc2vec__vector_size': [50, 100],
-              'doc2vec__window': [2, 4],
-              'doc2vec__epochs': [20, 40],
-              'doc2vec__hs': [0,1],
-              'svm__kernel': ['linear', 'rbf'],
-              'svm__C': [0.1, 1],
+param_grid = {'doc2vec__dm': [0],  # [0, 1]
+              'doc2vec__vector_size': [100],  # [50, 100]
+              'doc2vec__window': [4],  # [2, 4]
+              'doc2vec__epochs': [20],  # [20, 40]
+              'doc2vec__hs': [1],  # [0,1]
+              'svm__kernel': ['linear', 'rbf', 'poly'],
+              'svm__C': [0.1, 0.5, 1, 10],
+              'svm__degree': [2, 3, 5],
+              'svm__gamma': ['scale', 'auto'],
+
 }
 
-pipe_log = Pipeline([('doc2vec', Doc2VecModel()), ('svm', SVC(gamma='scale'))])
 
-log_grid = GridSearchCV(pipe_log, 
-                        param_grid=param_grid,
-                        scoring="accuracy",
-                        verbose=3,
-                        cv=10,
-                        n_jobs=-1)
+grid_search = False
+if grid_search:
+    pipe_log = Pipeline([('doc2vec', Doc2VecModel()), ('svm', SVC(gamma='scale'))])
+
+    log_grid = GridSearchCV(pipe_log, 
+                            param_grid=param_grid,
+                            scoring="accuracy",
+                            verbose=3,
+                            cv=10,
+                            n_jobs=-1)
 
 
-fold_rr_neg = folder_round_robin(files_path=PATH_NEG_TAG, mod=10)
-X_train_neg = []
-for i in range(1, 10):
-    X_train_neg += fold_rr_neg[i]
+    fold_rr_neg = folder_round_robin(files_path=PATH_NEG_TAG, mod=10)
+    X_train_neg = []
+    for i in range(1, 10):
+        X_train_neg += fold_rr_neg[i]
 
-fold_rr_pos = folder_round_robin(files_path=PATH_POS_TAG, mod=10)
-X_train_pos = []
-for i in range(1, 10):
-    X_train_pos += fold_rr_pos[i]
+    fold_rr_pos = folder_round_robin(files_path=PATH_POS_TAG, mod=10)
+    X_train_pos = []
+    for i in range(1, 10):
+        X_train_pos += fold_rr_pos[i]
 
-X_train = X_train_neg + X_train_pos
-y_train = [0]*len(X_train_neg) + [1]*len(X_train_pos)
+    X_train = X_train_neg + X_train_pos
+    y_train = [0]*len(X_train_neg) + [1]*len(X_train_pos)
 
-# fitted = log_grid.fit(X_train, y_train)
+    # fitted = log_grid.fit(X_train, y_train)
 
-# # Best parameters
-# print("Best Parameters: {}\n".format(log_grid.best_params_))
-# print("Best accuracy: {}\n".format(log_grid.best_score_))
-# print("Finished.")
+    # # Best parameters
+    # print("Best Parameters: {}\n".format(log_grid.best_params_))
+    # print("Best accuracy: {}\n".format(log_grid.best_score_))
+    # print("Finished.")
