@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from os import listdir
-from private import PATH_PROJECT
+from private.private import PATH_PROJECT
 
 def sep_train_test(files_path, top_value_train):
 	train_files = []

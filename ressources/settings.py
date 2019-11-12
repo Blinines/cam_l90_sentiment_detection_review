@@ -12,6 +12,6 @@ FREQ_CUTOFF_BIGRAM = 7
 PATH_PROJECT = None
 
 try:
-    from private import *
+    from private.private import *
 except:
     pass

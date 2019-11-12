@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from os import listdir
-from helpers_nb import create_bow
+from helpers.helpers_nb import create_bow
 
-from settings import PATH_PROJECT, PATH_NEG_TAG, PATH_POS_TAG, \
+from ressources.settings import PATH_PROJECT, PATH_NEG_TAG, PATH_POS_TAG, \
                      FREQ_CUTOFF_UNIGRAM, FREQ_CUTOFF_BIGRAM
 
 all_files_name = []

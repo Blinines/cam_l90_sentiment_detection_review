@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import json
 import numpy as np
-from helpers import get_accuracy, sign_test, p_value, get_variance
+from helpers.helpers_gen import get_accuracy, sign_test, p_value, get_variance
 
-with open('results_nb.json') as json_file:
+with open('../results_2019-11-11.json') as json_file:
     data = json.load(json_file)
 
 # getting accuracy per testing fold and averaged accuracy
@@ -14,10 +14,10 @@ for t in data.keys():
         acc[t][smoothing] = {'l': [], 'val': None, 'randomed_l': []}
         for test_fold in data[t][smoothing].keys():
             acc[t][smoothing]['l'].append(get_accuracy(data[t][smoothing][test_fold]))
-            #acc[t][smoothing]['randomed_l'].append(data[t][smoothing]['random'])
+            acc[t][smoothing]['randomed_l'].append(data[t][smoothing][test_fold]['random'])
         acc[t][smoothing]['val'] = np.mean(acc[t][smoothing]['l'])
         acc[t][smoothing]['variance'] = get_variance(acc[t][smoothing]['l'])
-        #acc[t][smoothing]['randomed'] = np.mean(acc[t][smoothing]['randomed_l'])
+        acc[t][smoothing]['randomed'] = np.mean(acc[t][smoothing]['randomed_l'])
 
 
 def concat_prediction(data):

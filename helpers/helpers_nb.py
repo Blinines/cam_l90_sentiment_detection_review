@@ -11,14 +11,20 @@ def create_feat_no_s(file_path):
 	feat_no_s = []
 	try:
 		f = open(file_path, 'r')
+		for word_info in f:
+			word_info_l = word_info.split()
+			if len(word_info_l) > 0:
+				feat_no_s.append(word_info_l[0])
+		return feat_no_s
 	except:
 		f = open(file_path, 'r', encoding='utf8')
+		for word_info in f:
+			word_info_l = word_info.split()
+			if len(word_info_l) > 0:
+				feat_no_s.append(word_info_l[0])
+		return feat_no_s
 	
-	for word_info in f:
-		word_info_l = word_info.split()
-		if len(word_info_l) > 0:
-			feat_no_s.append(word_info_l[0])
-	return feat_no_s
+	
 
 
 def create_feat_n_gram(feat_no_s, n):

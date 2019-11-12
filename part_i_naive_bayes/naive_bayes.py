@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-from helpers_cv import sep_train_test
-from helpers_nb import create_bow, create_freq_bow, create_feat, \
+from helpers.helpers_cv import sep_train_test
+from helpers.helpers_nb import create_bow, create_freq_bow, create_feat, \
 					   create_feat_no_s, create_feat_n_gram, predict_naive_bayes
-from helpers import sign_test, get_accuracy
-from settings import *
+from helpers.helpers_gen import sign_test, get_accuracy
+from ressources.settings import *
 
 
 class NaiveBayes:

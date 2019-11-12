@@ -4,9 +4,11 @@ from sklearn.base import BaseEstimator
 from sklearn.svm import SVC
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import GridSearchCV
-from helpers_cv import folder_round_robin
-from helpers_nb import create_feat_no_s
-from settings import PATH_NEG_TAG, PATH_POS_TAG
+from helpers.helpers_cv import folder_round_robin
+from helpers.helpers_nb import create_feat_no_s
+from ressources.settings import PATH_NEG_TAG, PATH_POS_TAG
+
+import os 
 
 class Doc2VecModel(BaseEstimator):
 
@@ -77,9 +79,9 @@ if grid_search:
     X_train = X_train_neg + X_train_pos
     y_train = [0]*len(X_train_neg) + [1]*len(X_train_pos)
 
-    # fitted = log_grid.fit(X_train, y_train)
+    fitted = log_grid.fit(X_train, y_train)
 
-    # # Best parameters
-    # print("Best Parameters: {}\n".format(log_grid.best_params_))
-    # print("Best accuracy: {}\n".format(log_grid.best_score_))
-    # print("Finished.")
+    # Best parameters
+    print("Best Parameters: {}\n".format(log_grid.best_params_))
+    print("Best accuracy: {}\n".format(log_grid.best_score_))
+    print("Finished.")

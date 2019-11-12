@@ -2,10 +2,11 @@
 import numpy as np
 from sklearn import svm
 from gensim.models.doc2vec import Doc2Vec
-from helpers_cv import folder_round_robin
-from settings import PATH_NEG_TAG, PATH_POS_TAG
-from helpers_nb import create_feat_no_s
+from helpers.helpers_cv import folder_round_robin
+from ressources.settings import PATH_NEG_TAG, PATH_POS_TAG
+from helpers.helpers_nb import create_feat_no_s
 from pipeline_svm import Doc2VecModel
+
 
 fold_rr_neg = folder_round_robin(files_path=PATH_NEG_TAG, mod=10)
 X_train_neg = []

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 import json
-from naive_bayes import NaiveBayes
-from helpers_cv import RoundRobinCV
-from helpers import get_accuracy
-from settings import PATH_NEG_TAG, PATH_POS_TAG, FREQ_CUTOFF_UNIGRAM, FREQ_CUTOFF_BIGRAM
+from part_i_naive_bayes.naive_bayes import NaiveBayes
+from helpers.helpers_cv import RoundRobinCV
+from helpers.helpers_gen import get_accuracy
+from ressources.settings import PATH_NEG_TAG, PATH_POS_TAG, FREQ_CUTOFF_UNIGRAM, FREQ_CUTOFF_BIGRAM
 
 if __name__ == '__main__':
     f= open("results_{0}.txt".format(str(datetime.now())[:10]),"w+")

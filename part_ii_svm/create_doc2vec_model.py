@@ -6,7 +6,7 @@ import collections
 from gensim.models.doc2vec import Doc2Vec
 from os import listdir
 from datetime import datetime
-from settings import PATH_PROJECT
+from ressources.settings import PATH_PROJECT
 
 svm_train_folder_dir = ['aclImdb/test/neg/', 'aclImdb/test/pos/', 
                         'aclImdb/train/neg/', 'aclImdb/train/pos/', 'aclImdb/train/unsup/']
