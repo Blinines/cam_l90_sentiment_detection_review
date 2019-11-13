@@ -7,13 +7,14 @@ from ressources.settings import *
 
 
 class NaiveBayes:
-	def __init__(self, t, smoothing, freq_cutoff):
+	def __init__(self, t, smoothing, freq_cutoff, feat_type='freq'):
 		# type in ['unigram', 'bigram', 'joint']
 		# freq_cutoff = {'unigram': 1, 'bigram': 4} for example
 		self.type_to_calc = {'unigram': [1], 'bigram': [2], 'joint': [1, 2]}
 		self.type = t
 		self.smoothing = smoothing
 		self.freq_cutoff = freq_cutoff
+		self.feat_type = feat_type
 	
 
 	def is_valid_nb(self):
@@ -41,8 +42,10 @@ class NaiveBayes:
 			nb_word_pos += curr_nb_word_pos
 
 		self.distinct_w_count = len(set(bow_neg.keys()).union(set(bow_pos.keys())))
-		self.freq_bow = {'NEG': create_freq_bow(bow_neg, nb_word_neg, self.smoothing, self.distinct_w_count), 
-						 'POS': create_freq_bow(bow_pos, nb_word_pos, self.smoothing, self.distinct_w_count)}
+		self.freq_bow = {'NEG': create_freq_bow(bow_neg, nb_word_neg, self.smoothing, 
+												self.distinct_w_count, self.feat_type), 
+						 'POS': create_freq_bow(bow_pos, nb_word_pos, self.smoothing, 
+						 						self.distinct_w_count, self.feat_type)}
 	
 
 	def predict(self, X_test):
@@ -61,33 +64,3 @@ class NaiveBayes:
 				y[val].append(predicted_file)
 				y['random'] += randomed
 		return y
-
-
-if False:
-	TRAIN_FILE_NEG, TEST_FILE_NEG = sep_train_test(PATH_NEG_TAG, TRAIN_TEST_SEP_VALUE)
-	TRAIN_FILE_POS, TEST_FILE_POS = sep_train_test(PATH_POS_TAG, TRAIN_TEST_SEP_VALUE)
-	X_train = {'NEG': TRAIN_FILE_NEG, 'POS': TRAIN_FILE_POS}
-	FREQ_CUTOFF = {1: FREQ_CUTOFF_UNIGRAM, 2: FREQ_CUTOFF_BIGRAM} 
-	X_test = {'NEG': TEST_FILE_NEG, 'POS': TEST_FILE_POS}
-	
-
-	 #for t in ['unigram', 'bigram', 'joint']:
-	for t in ['unigram']:
-		print('Type: {0}'.format(t))
-		
-		clf_1 = NaiveBayes(t=t, smoothing=1, freq_cutoff=FREQ_CUTOFF)
-		clf_1.fit(X_train=X_train)
-		print("Distinct features: {0}".format(clf_1.distinct_w_count))
-		# print(clf_1.freq_bow)
-		y_1 = clf_1.predict(X_test=X_test)
-		print("Smoothing {0}: accuracy is {1}".format(1, get_accuracy(y_1)))
-
-		# clf_2 = NaiveBayes(t=t, smoothing=0, freq_cutoff=FREQ_CUTOFF)
-		# clf_2.fit(X_train=X_train)
-		# y_2 = clf_2.predict(X_test=X_test)
-		# print("Smoothing {0}: accuracy is {1}".format(0, get_accuracy(y_2)))
-
-		# print(sign_test(y_1, y_2))
-		# print('')
-
-

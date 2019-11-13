@@ -11,11 +11,14 @@ if __name__ == '__main__':
     all_results = {t: {0: None, 1:None} for t in ['unigram', 'bigram', 'joint']}
     for t in ['unigram', 'bigram', 'joint']:
         for smoothing in  [0, 1]:
+            feat_type = 'pres'
+            f.write("Feature type: {0}".format(feat_type))
             f.write("Type NB: {0}, smoothing: {1} \n".format(t, smoothing))
             date_begin = datetime.now()
             f.write("Process began at: {0} \n".format(date_begin))
-            CLF = NaiveBayes(t=t, smoothing=smoothing, freq_cutoff={1: FREQ_CUTOFF_UNIGRAM, 
-                                                                    2: FREQ_CUTOFF_BIGRAM})
+            CLF = NaiveBayes(t=t, smoothing=smoothing, 
+                             freq_cutoff={1: FREQ_CUTOFF_UNIGRAM, 2: FREQ_CUTOFF_BIGRAM},
+                             feat_type=feat_type)
             RR = RoundRobinCV(clf=CLF, path_neg=PATH_NEG_TAG, path_pos=PATH_POS_TAG, mod=10)
             results = RR.cross_validate()
             all_results[t][smoothing] = results

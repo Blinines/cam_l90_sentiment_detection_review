@@ -6,20 +6,16 @@ import numpy as np
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import GridSearchCV
 from helpers.helpers_cv import folder_round_robin
-from helpers.helpers_nb import create_feat_no_s
-from ressources.settings import PATH_NEG_TAG, PATH_POS_TAG
+from helpers.helpers_nb import create_feat_no_s, create_bow
+from ressources.settings import PATH_NEG_TAG, PATH_POS_TAG, FREQ_CUTOFF_UNIGRAM, FREQ_CUTOFF_BIGRAM
 
 
-def map_word_to_id(train_files_path):
-        word_to_id = Counter()
-        max_id = 0
-        for train_file_path in train_files_path:
-            feat_set = set(create_feat_no_s(file_path=train_file_path))
-            for feat in feat_set:
-                if feat not in word_to_id.keys(): #adding new mapping word => id
-                    word_to_id[feat] = max_id
-                    max_id += 1
-        return word_to_id
+def map_word_to_id(bow_count):
+    word_to_id = Counter()
+    features = list(bow_count.keys())
+    for index, feat in enumerate(features):
+        word_to_id[feat] = index
+    return word_to_id
 
 
 def create_vect_for_doc(file_path, word_to_id):
@@ -31,13 +27,23 @@ def create_vect_for_doc(file_path, word_to_id):
     return x
 
 
-class SVMBOW():
+class SVMBOW:
 
-    def __init__(self):
+    def __init__(self, t, freq_cutoff):
+        # t is type, in ['unigram', 'bigram', 'joint']
+        # freq_cutoff = {'unigram': 1, 'bigram': 4} for example
         self.bow = None
+        self.t = t
+        self.type_to_calc = {'unigram': [1], 'bigram': [2], 'joint': [1, 2]}
+        self.freq_cutoff = freq_cutoff
     
     def fit(self, raw_documents):
-        self.bow = map_word_to_id(train_files_path=raw_documents)
+        bow_count = {}
+        for nb in self.type_to_calc[self.t]:
+            curr_bow= create_bow(raw_documents, self.freq_cutoff[nb], nb)[0]
+            bow_count.update(curr_bow)
+
+        self.bow = map_word_to_id(bow_count=bow_count)
         return self
     
     def transform(self, raw_documents):
@@ -52,22 +58,16 @@ class SVMBOW():
 
 
 param_grid = {'svm__kernel': ['linear', 'rbf', 'poly'],
-              'svm__C': [0.1, 0.5, 1, 10],
-              'svm__degree': [2, 3, 5],
-              'svm__gamma': ['scale', 'auto']}
+              'svm__C': [0.1, 0.5, 1, 10, 100],
+              #'svm__degree': [2, 3, 5],
+              #'svm__gamma': ['scale', 'auto']
+              'svm__gamma': [1, 0.1, 0.01, 10]}
 
 
-grid_search = False
+grid_search = True
 if grid_search:
-    pipe_log = Pipeline([('svmbow', SVMBOW()), ('svm', SVC(gamma='scale'))])
-
-    log_grid = GridSearchCV(pipe_log, 
-                            param_grid=param_grid,
-                            scoring="accuracy",
-                            verbose=3,
-                            cv=10,
-                            n_jobs=-1)
-
+    # Preparing parameters
+    FREQ_CUTOFF = {1: FREQ_CUTOFF_UNIGRAM, 2: FREQ_CUTOFF_BIGRAM} 
 
     fold_rr_neg = folder_round_robin(files_path=PATH_NEG_TAG, mod=10)
     X_train_neg = []
@@ -82,9 +82,30 @@ if grid_search:
     X_train = X_train_neg + X_train_pos
     y_train = [0]*len(X_train_neg) + [1]*len(X_train_pos)
 
-    fitted = log_grid.fit(X_train, y_train)
+    res = {}
+    for t in ['unigram', 'bigram', 'joint']:
+        pipe_log = Pipeline([('svmbow', SVMBOW(t=t, freq_cutoff=FREQ_CUTOFF)), 
+                             ('svm', SVC(gamma='scale'))])
+
+        log_grid = GridSearchCV(pipe_log, 
+                                param_grid=param_grid,
+                                scoring="accuracy",
+                                verbose=3,
+                                cv=2,
+                                n_jobs=-1)
+
+
+        fitted = log_grid.fit(X_train, y_train)
+        res[t] = log_grid
+        # print("Results for Gridsearch: {}\n".format(t))
+        # print("Best Parameters: {}\n".format(log_grid.best_params_))
+        # print("Best accuracy: {}\n".format(log_grid.best_score_))
+        # print("Finished.")
+
 
     # Best parameters
-    print("Best Parameters: {}\n".format(log_grid.best_params_))
-    print("Best accuracy: {}\n".format(log_grid.best_score_))
-    print("Finished.")
+    for t in res.keys():
+        print("Results for Gridsearch: {}\n".format(t))
+        print("Best Parameters: {}\n".format(res[t].best_params_))
+        print("Best accuracy: {}\n".format(res[t].best_score_))
+        print("Finished.")

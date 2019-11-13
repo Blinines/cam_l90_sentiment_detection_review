@@ -3,7 +3,7 @@ import json
 import numpy as np
 from helpers.helpers_gen import get_accuracy, sign_test, p_value, get_variance
 
-with open('../results_2019-11-11.json') as json_file:
+with open('../results_2019-11-13.json') as json_file:
     data = json.load(json_file)
 
 # getting accuracy per testing fold and averaged accuracy
@@ -21,6 +21,7 @@ for t in data.keys():
 
 
 def concat_prediction(data):
+    '''Concatenate all predictions from all cross validated folders'''
     concat = {}
     for t in data.keys():
         for smoothing in data[t].keys():
