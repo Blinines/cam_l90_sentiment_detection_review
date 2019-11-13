@@ -5,7 +5,7 @@ from sklearn.svm import SVC
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import GridSearchCV
 from helpers.helpers_cv import folder_round_robin
-from helpers.helpers_nb import create_feat_no_s
+from helpers.helpers_bow import create_feat_no_s
 from ressources.settings import PATH_NEG_TAG, PATH_POS_TAG
 
 import os 

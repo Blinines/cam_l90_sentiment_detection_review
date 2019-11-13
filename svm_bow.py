@@ -6,7 +6,7 @@ import numpy as np
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import GridSearchCV
 from helpers.helpers_cv import folder_round_robin
-from helpers.helpers_nb import create_feat_no_s, create_bow
+from helpers.helpers_bow import create_feat_no_s, create_bow
 from ressources.settings import PATH_NEG_TAG, PATH_POS_TAG, FREQ_CUTOFF_UNIGRAM, FREQ_CUTOFF_BIGRAM
 
 

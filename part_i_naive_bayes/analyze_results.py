@@ -1,23 +1,25 @@
 # -*- coding: utf-8 -*-
 import json
 import numpy as np
-from helpers.helpers_gen import get_accuracy, sign_test, p_value, get_variance
+from helpers.helpers_gen import sign_test, p_value_sign_test, get_variance
 
-with open('../results_2019-11-13.json') as json_file:
+with open('../results_2019_11_13_22_03_39.json') as json_file:
     data = json.load(json_file)
 
 # getting accuracy per testing fold and averaged accuracy
-acc = {}
-for t in data.keys():
-    acc[t] = {}
-    for smoothing in data[t].keys():
-        acc[t][smoothing] = {'l': [], 'val': None, 'randomed_l': []}
-        for test_fold in data[t][smoothing].keys():
-            acc[t][smoothing]['l'].append(get_accuracy(data[t][smoothing][test_fold]))
-            acc[t][smoothing]['randomed_l'].append(data[t][smoothing][test_fold]['random'])
-        acc[t][smoothing]['val'] = np.mean(acc[t][smoothing]['l'])
-        acc[t][smoothing]['variance'] = get_variance(acc[t][smoothing]['l'])
-        acc[t][smoothing]['randomed'] = np.mean(acc[t][smoothing]['randomed_l'])
+def get_acc_details(data):
+    acc = {t: {} for t in data.keys()}
+    for t in data.keys():
+        for smoothing in data[t].keys():
+            acc[t][smoothing] = {}
+            for feat_type in data[t][smoothing].keys():
+                acc[t][smoothing][feat_type] = {'l': []}
+                for test_fold in data[t][smoothing][feat_type].keys():
+                    if test_fold != "avg_score":
+                        acc[t][smoothing][feat_type]['l'].append(data[t][smoothing][feat_type][test_fold]["score"])
+                acc[t][smoothing][feat_type]['val'] = data[t][smoothing][feat_type]["avg_score"]
+                acc[t][smoothing][feat_type]['variance'] = get_variance(acc[t][smoothing][feat_type]['l'])
+    return acc
 
 
 def concat_prediction(data):
@@ -25,33 +27,55 @@ def concat_prediction(data):
     concat = {}
     for t in data.keys():
         for smoothing in data[t].keys():
-            curr_res = data[t][smoothing]
-            new_name = '{0}_{1}'.format(t, smoothing)
-            concat[new_name] = {}
-            for val in ['NEG', 'POS']:
-                concat[new_name][val] = []
+            for feat_type in data[t][smoothing].keys():
+                curr_res = data[t][smoothing][feat_type]
+                new_name = '{0}_{1}_{2}'.format(t, smoothing, feat_type)
+                concat[new_name] = []
+
                 for key in curr_res.keys():
-                    concat[new_name][val] += curr_res[key][val]
+                    if key != 'avg_score':
+                        concat[new_name] += curr_res[key]['predicted']
     return concat
 
 
+def create_true_values(data):
+    ''' Retrieve all true values '''
+    y_true = []
+    
+    t = list(data.keys())[0]
+    smoothing = list(data[t].keys())[0]
+    feat_type = list(data[t][smoothing].keys())[0]
 
-# printing results
-print_result_acc = True
-if print_result_acc:
-    for t in acc.keys():
-        for smoothing in data[t].keys():
-            print("Type: {0}, smoothing: {1}".format(t, smoothing))
-            print(acc[t][smoothing])
-            print('')
+    res = data[t][smoothing][feat_type]
+    for key in res:
+        if key != 'avg_score':
+            y_true += res[key]['true_values']
+    return [int(nb) for nb in y_true]
 
-print_sign_test = True
-if print_sign_test:
-    concat = concat_prediction(data)
-    models = sorted(concat.keys())
-    for i in range(len(models)-1):
-        model_1 = models[i]
-        for model_2 in models[i+1:]:
-                numbers = sign_test(concat[model_1], concat[model_2])
-                p_val = p_value(numbers=numbers, q=0.5)
-                print("Sign test : 1 => {0}, 2 => {1}, p value is {2}, numbers are {3}".format(model_1, model_2, p_val, numbers))
+
+def analyze_results(json_path, print_result_acc=True, print_sign_test=True):
+    with open(json_path) as json_file:
+        data = json.load(json_file)
+    
+    if print_result_acc:
+        acc = get_acc_details(data=data)
+        for t in acc.keys():
+            for smoothing in data[t].keys():
+                for feat_type in data[t][smoothing].keys():
+                    print("Type: {0}, smoothing: {1}, feature type: {2}".format(t, smoothing, feat_type))
+                    print(acc[t][smoothing][feat_type])
+                    print('')
+    
+    if print_sign_test:
+        concat = concat_prediction(data)
+        y_true = create_true_values(data)
+        models = sorted(concat.keys())
+        for i in range(len(models)-1):
+            model_1 = models[i]
+            for model_2 in models[i+1:]:
+                    numbers = sign_test(y_1=concat[model_1], y_2=concat[model_2], y_true=y_true)
+                    p_val = p_value_sign_test(numbers=numbers, q=0.5)
+                    print("Sign test : 1 => {0}, 2 => {1}, p value is {2}, numbers are {3}".format(model_1, model_2, p_val, numbers))
+        
+    return
+

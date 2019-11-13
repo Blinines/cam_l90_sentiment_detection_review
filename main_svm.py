@@ -4,7 +4,7 @@ from sklearn import svm
 from gensim.models.doc2vec import Doc2Vec
 from helpers.helpers_cv import folder_round_robin
 from ressources.settings import PATH_NEG_TAG, PATH_POS_TAG
-from helpers.helpers_nb import create_feat_no_s
+from helpers.helpers_bow import create_feat_no_s
 from pipeline_svm import Doc2VecModel
 
 
