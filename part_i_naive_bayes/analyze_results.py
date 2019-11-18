@@ -3,9 +3,6 @@ import json
 import numpy as np
 from helpers.helpers_gen import sign_test, p_value_sign_test, get_variance
 
-with open('../results_2019_11_13_22_03_39.json') as json_file:
-    data = json.load(json_file)
-
 # getting accuracy per testing fold and averaged accuracy
 def get_acc_details(data):
     acc = {t: {} for t in data.keys()}
@@ -79,3 +76,7 @@ def analyze_results(json_path, print_result_acc=True, print_sign_test=True):
         
     return
 
+
+if __name__ == '__main__':
+    json_path = '../results/NB_results_2019_11_13_22_03_39.json'
+    analyze_results(json_path)

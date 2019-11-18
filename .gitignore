@@ -15,3 +15,4 @@ dist
 build
 cam_l90_sentiment_detection_review.egg-info
 part_ii_svm/models_svm
+results

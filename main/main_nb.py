@@ -3,6 +3,7 @@ import numpy as np
 from datetime import datetime
 import json
 from part_i_naive_bayes.naive_bayes import NaiveBayes
+from part_i_naive_bayes.analyze_results import analyze_results
 from helpers.helpers_cv import RoundRobinCV
 from ressources.settings import PATH_NEG_TAG, PATH_POS_TAG, FREQ_CUTOFF_UNIGRAM, FREQ_CUTOFF_BIGRAM
 from ressources.settings import TYPE_NB, SMOOTHING_NB, FEAT_TYPE, FREQ_CUTOFF
@@ -10,8 +11,10 @@ from ressources.settings import TYPE_NB, SMOOTHING_NB, FEAT_TYPE, FREQ_CUTOFF
 if __name__ == '__main__':
     curr_date = str(datetime.now())
     y, mo, d, h, mi, s = tuple(curr_date[:10].split('-') + curr_date[11:19].split(':'))
+    file_name_no_ext = "results/NB_results_{0}_{1}_{2}_{3}_{4}_{5}".format(y, mo, d, h, mi, s)
 
-    f= open("results_{0}_{1}_{2}_{3}_{4}_{5}.txt".format(y, mo, d, h, mi, s),"w+")
+    # Creating .txt file with logs
+    f= open("{0}.txt".format(file_name_no_ext),"w+")
     all_results = {t: {} for t in TYPE_NB}
     for t in TYPE_NB:
         for smoothing in  SMOOTHING_NB:
@@ -43,8 +46,12 @@ if __name__ == '__main__':
                 f.write("Process ended at: {0} \n".format(date_end))
                 f.write("Process took: {0} \n".format(date_end - date_begin))
                 f.write('\n')
-
     f.close()
     
-    with open("results_{0}_{1}_{2}_{3}_{4}_{5}.json".format(y, mo, d, h, mi, s),"w") as fp:
+    # Saving results as json
+    with open("{0}.json".format(file_name_no_ext),"w") as fp:
         json.dump(all_results, fp, default=str)
+    
+    # Printing results directly
+    analyze_results(json_path="{0}.json".format(file_name_no_ext))
+
