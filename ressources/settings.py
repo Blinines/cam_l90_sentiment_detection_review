@@ -15,7 +15,7 @@ FREQ_CUTOFF = {1: FREQ_CUTOFF_UNIGRAM, 2: FREQ_CUTOFF_BIGRAM}
 # For NB main_nb.py
 TYPE_NB = ['unigram', 'bigram', 'joint']
 SMOOTHING_NB = [0, 1]
-FEAT_TYPE = ['freq', 'pres']
+FEAT_TYPE = ['freq']
 
 # Others
 TRAIN_TEST_SEP_VALUE = 900

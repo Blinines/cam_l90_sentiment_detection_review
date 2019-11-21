@@ -18,7 +18,7 @@ In case you accessed the code via the VM, everything is already installed hence 
 
 #### Install the requirements
 
-* Make sure you have a correct environment created for this project. You might want to use a virtual environment.  Python 3 preferred. In any case, activate your environment.
+* Make sure you have a correct environment created for this project. You might want to use a virtual environment.  Python 3 preferred. In any case, activate your environment. For Linux the command is `source venv/bin/activate`, for Windows it is `venv\Scripts\activate`
  
 * Install the requirements using `pip install -r requirements.txt`.
 

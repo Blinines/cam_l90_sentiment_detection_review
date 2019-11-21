@@ -30,10 +30,10 @@ def read_corpus(files_path, tokens_only=False):
 
 # Initializing training corpus + parameters
 train_corpus = list(read_corpus(svm_train_file_dir))
-dm_val = [0, 1]
-vector_size_val = [50, 100]
+dm_val = [0, 1]  # If 1 dm, else dbow
+vector_size_val = [50, 100]  # 100 good enough for us
 window_val = [2, 4]
-epochs_val = [20, 40]
+epochs_val = [20, 40]  # 10 or 20
 hs_val = [0, 1]
 params = [dm_val, vector_size_val, window_val, epochs_val, hs_val]
 

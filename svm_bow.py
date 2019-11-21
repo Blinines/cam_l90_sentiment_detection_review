@@ -5,6 +5,7 @@ from sklearn.svm import SVC
 import numpy as np
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import GridSearchCV
+from sklearn.feature_extraction.text import TfidfTransformer
 from helpers.helpers_cv import folder_round_robin
 from helpers.helpers_bow import create_feat_no_s, create_bow
 from ressources.settings import PATH_NEG_TAG, PATH_POS_TAG, FREQ_CUTOFF_UNIGRAM, FREQ_CUTOFF_BIGRAM
@@ -29,13 +30,14 @@ def create_vect_for_doc(file_path, word_to_id):
 
 class SVMBOW:
 
-    def __init__(self, t, freq_cutoff):
+    def __init__(self, t, freq_cutoff, tf_idf=0):
         # t is type, in ['unigram', 'bigram', 'joint']
         # freq_cutoff = {'unigram': 1, 'bigram': 4} for example
         self.bow = None
         self.t = t
         self.type_to_calc = {'unigram': [1], 'bigram': [2], 'joint': [1, 2]}
         self.freq_cutoff = freq_cutoff
+        self.tf_idf = tf_idf
     
     def fit(self, raw_documents):
         bow_count = {}
@@ -50,7 +52,13 @@ class SVMBOW:
         X = np.zeros((len(raw_documents), len(self.bow.keys())))
         for index, doc in enumerate(raw_documents):
             X[index, :] = create_vect_for_doc(file_path=doc, word_to_id=self.bow)
+        
+        if self.tf_idf:
+            tf_transformer = TfidfTransformer(use_idf=False).fit(X)
+            X = tf_transformer.transform(X)
+
         return sparse.coo_matrix(X)
+
     
     def fit_transform(self, raw_documents, y=None):
         self.fit(raw_documents)
@@ -64,7 +72,7 @@ param_grid = {'svm__kernel': ['linear', 'rbf', 'poly'],
               'svm__gamma': [1, 0.1, 0.01, 10]}
 
 
-grid_search = True
+grid_search = False
 if grid_search:
     # Preparing parameters
     FREQ_CUTOFF = {1: FREQ_CUTOFF_UNIGRAM, 2: FREQ_CUTOFF_BIGRAM} 
@@ -84,23 +92,24 @@ if grid_search:
 
     res = {}
     for t in ['unigram', 'bigram', 'joint']:
-        pipe_log = Pipeline([('svmbow', SVMBOW(t=t, freq_cutoff=FREQ_CUTOFF)), 
-                             ('svm', SVC(gamma='scale'))])
+        for tf_idf in [0, 1]:
+            pipe_log = Pipeline([('svmbow', SVMBOW(t=t, freq_cutoff=FREQ_CUTOFF, tf_idf=tf_idf)), 
+                                ('svm', SVC(gamma='scale'))])
 
-        log_grid = GridSearchCV(pipe_log, 
-                                param_grid=param_grid,
-                                scoring="accuracy",
-                                verbose=3,
-                                cv=2,
-                                n_jobs=-1)
+            log_grid = GridSearchCV(pipe_log, 
+                                    param_grid=param_grid,
+                                    scoring="accuracy",
+                                    verbose=3,
+                                    cv=2,
+                                    n_jobs=-1)
 
 
-        fitted = log_grid.fit(X_train, y_train)
-        res[t] = log_grid
-        # print("Results for Gridsearch: {}\n".format(t))
-        # print("Best Parameters: {}\n".format(log_grid.best_params_))
-        # print("Best accuracy: {}\n".format(log_grid.best_score_))
-        # print("Finished.")
+            fitted = log_grid.fit(X_train, y_train)
+            res[t] = log_grid
+            print("Results for Gridsearch: features => {0}, tf_idf => {1}\n".format(t, tf_idf))
+            print("Best Parameters: {}\n".format(log_grid.best_params_))
+            print("Best accuracy: {}\n".format(log_grid.best_score_))
+            print("Finished.")
 
 
     # Best parameters
