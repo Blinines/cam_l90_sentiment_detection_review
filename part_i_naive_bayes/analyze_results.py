@@ -77,6 +77,6 @@ def analyze_results(json_path, print_result_acc=True, print_sign_test=True):
     return
 
 
-if __name__ == '__main__':
-    json_path = '../results/NB_results_2019_11_13_22_03_39.json'
-    analyze_results(json_path)
+# if __name__ == '__main__':
+#     json_path = '../results/NB_results_2019_11_13_22_03_39.json'
+#     analyze_results(json_path)

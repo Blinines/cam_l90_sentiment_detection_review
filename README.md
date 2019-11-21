@@ -35,8 +35,8 @@ This README.md is for now under construction. Below are the details regarding th
     * 3 settings can be changed in the `ressources/settings.py` file, by default they are as follow : 
         * `TYPE_NB = ['unigram', 'bigram', 'joint']` : Type of n-gram to take into account. Only those three can be calculated.
         * `SMOOTHING_NB = [0, 1]`. Smoothing applied.
-        * `FEAT_TYPE` = ['freq', 'pres']. How to represent the documents for the testing phase. 
-    * Launching the script will compute Round Robin cross validation for all possible models for the settings, and save two new files : one .txt file and one .json file. The .txt file contains readable sentence of results per fold, whereas the .json file will contain raw data.
+        * `FEAT_TYPE = ['freq']`. How to represent the documents for the testing phase. 
+    * Launching the script will compute Round Robin cross validation for all possible models for the settings, and save two new files : one .txt file and one .json file. The .txt file contains readable sentence of results per fold, whereas the .json file will contain raw data. One latest example is available in the VM.
     * By default launching the script will also analyze the results that will be printed on the terminal command : info both on accuracy and p-value between models will be displayed.
 
 Describing project architecture
