@@ -63,7 +63,7 @@ def re_sample(y_1, y_2, perm):
     return y_1_new, y_2_new
 
 
-def p_value_permutation_test(y_1, y_2, y_true, r):
+def p_value_permutation_test(y_1, y_2, y_true, r=5000):
     ''' r: number of permutations used '''
 
     # init variables

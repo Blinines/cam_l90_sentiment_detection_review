@@ -7,7 +7,7 @@ with open('requirements.txt') as f:
 setup(
     name='cam_l90_sentiment_detection_review',
     version='1.0',
-    packages=['helpers', 'part_i_naive_bayes', 'part_ii_svm', 'private', 'ressources'],
+    packages=['helpers', 'part_i_naive_bayes', 'part_ii_svm', 'private', 'ressources', 'data_model'],
     url='',
     license='',
     author='ines_blin',

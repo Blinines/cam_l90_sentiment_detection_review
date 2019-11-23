@@ -8,7 +8,7 @@ from helpers.helpers_cv import folder_round_robin
 from ressources.settings import PATH_NEG_TAG, PATH_POS_TAG
 from helpers.helpers_bow import create_feat_no_s
 from part_ii_svm.create_doc2vec_model import read_corpus
-from pipeline_svm import Doc2VecModel
+from part_ii_svm.doc_embeddings import Doc2VecModel
 from gensim.models.doc2vec import Doc2Vec
 from ressources.settings import PATH_PROJECT
 
@@ -33,7 +33,7 @@ X_test_blind = X_test_blind_neg + X_test_blind_pos
 y_test_blind = [0]*len(X_test_blind_neg) + [1]*len(X_test_blind_pos)
 
 
-train_model = True
+train_model = False
 if train_model:
     # Training model
     svm_train_folder_dir = ['aclImdb/test/neg/', 'aclImdb/test/pos/', 
@@ -62,17 +62,17 @@ if train_model:
     X_train_vectors = transform(doc2vec_model, X_train)
     X_test_vectors = transform(doc2vec_model, X_test_blind)
 
-load_model = False
+load_model = True
 if load_model:
     # Loading model
-    doc2vec_model = Doc2VecModel(dm=0, vector_size=100, window=4, epochs=20, hs=1)
+    doc2vec_model = Doc2VecModel(dm=0, vector_size=100, window=10, epochs=20, hs=1, dbow_words=0)
     doc2vec_model.fit()
 
     X_train_vectors = doc2vec_model.transform(X_train)
     X_test_vectors = doc2vec_model.transform(X_test_blind)
 
 
-clf = svm.SVC(C=0.1, degree=3, gamma='auto', kernel='linear')
+clf = svm.SVC(C=0.1, degree=5, gamma='scale', kernel='linear')
 clf.fit(X_train_vectors, y_train) 
 y_predicted = clf.predict(X_test_vectors)
 

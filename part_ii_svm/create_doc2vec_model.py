@@ -6,14 +6,7 @@ import collections
 from gensim.models.doc2vec import Doc2Vec
 from os import listdir
 from datetime import datetime
-from ressources.settings import PATH_PROJECT
-
-svm_train_folder_dir = ['aclImdb/test/neg/', 'aclImdb/test/pos/', 
-                        'aclImdb/train/neg/', 'aclImdb/train/pos/', 'aclImdb/train/unsup/']
-svm_train_file_dir = []
-for folder in svm_train_folder_dir:
-    svm_train_file_dir += [PATH_PROJECT + folder + file_name \
-                                for file_name in listdir(PATH_PROJECT + folder)]
+from ressources.settings import PATH_PROJECT, SVM_TRAIN_FILE_DIR
 
 
 def read_corpus(files_path, tokens_only=False):
@@ -28,68 +21,69 @@ def read_corpus(files_path, tokens_only=False):
                     yield gensim.models.doc2vec.TaggedDocument(tokens, [i])
 
 
-# Initializing training corpus + parameters
-train_corpus = list(read_corpus(svm_train_file_dir))
-dm_val = [0, 1]  # If 1 dm, else dbow
-vector_size_val = [50, 100]  # 100 good enough for us
-window_val = [2, 4]
-epochs_val = [20, 40]  # 10 or 20
-hs_val = [0, 1]
-params = [dm_val, vector_size_val, window_val, epochs_val, hs_val]
+def train_save(params, train_corpus, write=True):  
+    ''' Training and saving all possible models that were not saved '''
+    if write: f= open("train_doc2vec_model_{0}.txt".format(str(datetime.now())[:10]),"w+")
+    existing_model = listdir('models_svm/')
 
-
-train_save = False
-if train_save: # Training and saving all possible models
-    f= open("train_doc2vec_model_{0}.txt".format(str(datetime.now())[:10]),"w+")
     for param in itertools.product(*params):
-        dm, vector_size, window, epoch, hs = param[0], param[1], param[2], param[3], param[4]
-        f.write("dm: {0}, vector_size: {1}, window: {2}, epoch: {3}, hs: {4} \n" \
-                    .format(dm, vector_size, window, epoch, hs))
-        print("Model : dm: {0}, vector_size: {1}, window: {2}, epoch: {3}, hs: {4}".format(dm, vector_size, window, epoch, hs))
-        date_begin = datetime.now()
-        f.write("Training began at : {0} \n".format(date_begin))
+        dm, vector_size, window, epoch, hs, dbow_words = param[0], param[1], param[2], param[3], param[4], param[5]
+        if write: f.write("dm: {0}, vector_size: {1}, window: {2}, epoch: {3}, hs: {4}, dbow_words: {5} \n" \
+                          .format(dm, vector_size, window, epoch, hs, dbow_words))
+        print("Model : dm: {0}, vector_size: {1}, window: {2}, epoch: {3}, hs: {4}, dbow_words: {5}".format(dm, vector_size, window, epoch, hs, dbow_words))
+        
+        name_model = "dm_{0}_vector_size_{1}_window_{2}_epoch_{3}_hs_{4}_dbow_words_{5}".format(dm, vector_size, window, epoch, hs, dbow_words)
+        if (name_model in existing_model) and write:
+            f.write("Model already exists \n")
+            print("Model already saved in local")
+        
+        else:
+            
+            if write:
+                date_begin = datetime.now()
+                f.write("Training began at : {0} \n".format(date_begin))
 
-        model = gensim.models.doc2vec.Doc2Vec(dm=dm, vector_size=vector_size, \
-                                              window=window, epoch=epoch, hs=hs)
-        model.build_vocab(train_corpus)
-        date_end_vocab = datetime.now()
-        f.write("Finished building vocabulary at : {0}, took : {1} \n".format(date_end_vocab, \
-                                                                              date_end_vocab - date_begin))
-        date_begin_train = datetime.now()
-        model.train(train_corpus, total_examples=model.corpus_count, epochs=model.epochs)
-        date_end_train = datetime.now()
-        f.write("Finished training model at : {0}, took : {1} \n".format(date_end_train, \
-                                                                         date_end_train - date_begin_train))
-        print("Finished training")
-        name_model = "models_svm/dm_{0}_vector_size_{1}window_{2}epoch_{3}hs_{4}".format(dm, vector_size, window, epoch, hs)
-        model.save(name_model)
-        print("Saved model")
-        print("")
-        date_end = datetime.now()
-        f.write("Full process for this model ended at : {0}, took: {1}".format(date_end,
-                                                                               date_end - date_begin))
-        f.write('\n')
+            model = gensim.models.doc2vec.Doc2Vec(dm=dm, vector_size=vector_size, \
+                                                  window=window, epoch=epoch, hs=hs,
+                                                  dbow_words=dbow_words)
+            model.build_vocab(train_corpus)
 
-    f.close()
+            if write:
+                date_end_vocab = datetime.now()
+                f.write("Finished building vocabulary at : {0}, took : {1} \n".format(date_end_vocab, \
+                                                                                      date_end_vocab - date_begin))
+                date_begin_train = datetime.now()
 
+            model.train(train_corpus, total_examples=model.corpus_count, epochs=model.epochs)
 
-assess_model = False
-if assess_model:
-    f= open("assess_doc2vec_models_{0}.txt".format(str(datetime.now())[:10]),"w+")
-    models = listdir("model/")
-    for model_name in models:
-        model = Doc2Vec.load("models_svm/{0}".format(model_name))
-        ranks = []
-        second_ranks = []
-        for doc_id in range(len(train_corpus)):
-            inferred_vector = model.infer_vector(train_corpus[doc_id].words)
-            sims = model.docvecs.most_similar([inferred_vector], topn=len(model.docvecs))
-            rank = [docid for docid, sim in sims].index(doc_id)
-            ranks.append(rank)
-        counter = collections.Counter(ranks)
-        f.write("{0} \n".format(model))
-        f.write("Counter: {0} \n".format(counter))
-        f.write("\n")
-    f.close()
+            if write:
+                date_end_train = datetime.now()
+                f.write("Finished training model at : {0}, took : {1} \n".format(date_end_train, \
+                                                                                 date_end_train - date_begin_train))
+            print("Finished training")
+            model.save('models_svm/{0}'.format(name_model))
+            print("Saved model")
+            print("")
+
+            if write:
+                date_end = datetime.now()
+                f.write("Full process for this model ended at : {0}, took: {1}".format(date_end,
+                                                                                date_end - date_begin))
+                f.write('\n')
+
+    if write: f.close()
         
         
+if __name__ == '__main__':
+    
+    # Initializing training corpus + parameters
+    train_corpus = list(read_corpus(SVM_TRAIN_FILE_DIR))
+    dm_val = [0, 1]  # If 1 dm, else dbow
+    vector_size_val = [50, 100]  # 100 good enough for us
+    window_val = [2, 4, 10, 15]
+    epochs_val = [20, 40]  # 10 or 20
+    hs_val = [0, 1]  # If 1 hierarchical softmax
+    dbow_words_val = [0, 1]  # 1: train word vectors jointly
+    params = [dm_val, vector_size_val, window_val, epochs_val, hs_val, dbow_words_val]
+
+    train_save(params, train_corpus)

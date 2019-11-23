@@ -61,6 +61,10 @@ Describing project architecture
     * [naive_bayes](./part_i_naive_bayes/naive_bayes.py) : Naive Bayes class implementation, with methods fit and predict
 * [part_ii_svm](./part_ii_svm)
     * [create_doc2vec_model](./part_ii_svm/create_doc2vec_model.py) : training different Doc2Vec models and saving them (locally) in order to work with them faster afterwards
+    * [cv_bow](./part_ii_svm/cv_bow.py)
+    * [cv_dm_dbow_words](./part_ii_svm/cv_dm_dbow_words)
+    * [cv_doc2vec_hyper_param](./part_ii_svm/cv_doc2vec_hyper_param)
+    * [docs_embeddings](./part_ii_svm/docs_embeddings)
 * [private](./private)
     * [private](./private/private.py) : non shared file with access to the data
 * [ressources](./ressources)
@@ -68,11 +72,9 @@ Describing project architecture
 * [results](./results) : storing various results from experiments
 * [.gitignore](./.gitignore) : files to be ignores by Git when committing 
 * [main_svm](./main_svm.py)
-* [pipeline_svm](./pipeline_svm.py)
 * [README.md](./README.md)
 * [requirements.txt](./requirements.txt#)
 * [setup](./setup.py)
-* [svm_bow](./svm_bow.py)
 * [svm](./svm.py)
 
 

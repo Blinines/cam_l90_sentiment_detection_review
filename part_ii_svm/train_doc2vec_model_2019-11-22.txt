@@ -1,0 +1,547 @@
+dm: 0, vector_size: 50, window: 2, epoch: 20, hs: 0, dbow_words: 0 
+Model already exists 
+dm: 0, vector_size: 50, window: 2, epoch: 20, hs: 0, dbow_words: 1 
+Training began at : 2019-11-22 14:40:50.250525 
+Finished building vocabulary at : 2019-11-22 14:41:08.351677, took : 0:00:18.101152 
+Finished training model at : 2019-11-22 14:45:33.133441, took : 0:04:24.781764 
+Full process for this model ended at : 2019-11-22 14:45:33.541450, took: 0:04:43.290925
+dm: 0, vector_size: 50, window: 2, epoch: 20, hs: 1, dbow_words: 0 
+Model already exists 
+dm: 0, vector_size: 50, window: 2, epoch: 20, hs: 1, dbow_words: 1 
+Training began at : 2019-11-22 14:45:33.541450 
+Finished building vocabulary at : 2019-11-22 14:45:52.347119, took : 0:00:18.805669 
+Finished training model at : 2019-11-22 14:54:37.879865, took : 0:08:45.532746 
+Full process for this model ended at : 2019-11-22 14:54:38.868223, took: 0:09:05.326773
+dm: 0, vector_size: 50, window: 2, epoch: 40, hs: 0, dbow_words: 0 
+Model already exists 
+dm: 0, vector_size: 50, window: 2, epoch: 40, hs: 0, dbow_words: 1 
+Training began at : 2019-11-22 14:54:38.868223 
+Finished building vocabulary at : 2019-11-22 14:54:55.104863, took : 0:00:16.236640 
+Finished training model at : 2019-11-22 14:59:28.572417, took : 0:04:33.467554 
+Full process for this model ended at : 2019-11-22 14:59:28.992313, took: 0:04:50.124090
+dm: 0, vector_size: 50, window: 2, epoch: 40, hs: 1, dbow_words: 0 
+Model already exists 
+dm: 0, vector_size: 50, window: 2, epoch: 40, hs: 1, dbow_words: 1 
+Training began at : 2019-11-22 14:59:28.992313 
+Finished building vocabulary at : 2019-11-22 14:59:50.619500, took : 0:00:21.627187 
+Finished training model at : 2019-11-22 15:09:02.891142, took : 0:09:12.271642 
+Full process for this model ended at : 2019-11-22 15:09:04.536743, took: 0:09:35.544430
+dm: 0, vector_size: 50, window: 4, epoch: 20, hs: 0, dbow_words: 0 
+Model already exists 
+dm: 0, vector_size: 50, window: 4, epoch: 20, hs: 0, dbow_words: 1 
+Training began at : 2019-11-22 15:09:04.536743 
+Finished building vocabulary at : 2019-11-22 15:09:21.877480, took : 0:00:17.340737 
+Finished training model at : 2019-11-22 15:15:53.087419, took : 0:06:31.209939 
+Full process for this model ended at : 2019-11-22 15:15:53.456431, took: 0:06:48.919688
+dm: 0, vector_size: 50, window: 4, epoch: 20, hs: 1, dbow_words: 0 
+Model already exists 
+dm: 0, vector_size: 50, window: 4, epoch: 20, hs: 1, dbow_words: 1 
+Training began at : 2019-11-22 15:15:53.456431 
+Finished building vocabulary at : 2019-11-22 15:16:13.699355, took : 0:00:20.242924 
+Finished training model at : 2019-11-22 15:29:37.319355, took : 0:13:23.620000 
+Full process for this model ended at : 2019-11-22 15:29:38.609905, took: 0:13:45.153474
+dm: 0, vector_size: 50, window: 4, epoch: 40, hs: 0, dbow_words: 0 
+Model already exists 
+dm: 0, vector_size: 50, window: 4, epoch: 40, hs: 0, dbow_words: 1 
+Training began at : 2019-11-22 15:29:38.611898 
+Finished building vocabulary at : 2019-11-22 15:29:55.969499, took : 0:00:17.357601 
+Finished training model at : 2019-11-22 15:36:08.796917, took : 0:06:12.827418 
+Full process for this model ended at : 2019-11-22 15:36:09.104065, took: 0:06:30.492167
+dm: 0, vector_size: 50, window: 4, epoch: 40, hs: 1, dbow_words: 0 
+Model already exists 
+dm: 0, vector_size: 50, window: 4, epoch: 40, hs: 1, dbow_words: 1 
+Training began at : 2019-11-22 15:36:09.138201 
+Finished building vocabulary at : 2019-11-22 15:36:26.424294, took : 0:00:17.286093 
+Finished training model at : 2019-11-22 15:47:52.497539, took : 0:11:26.073245 
+Full process for this model ended at : 2019-11-22 15:47:53.526789, took: 0:11:44.388588
+dm: 0, vector_size: 50, window: 10, epoch: 20, hs: 0, dbow_words: 0 
+Training began at : 2019-11-22 15:47:53.542700 
+Finished building vocabulary at : 2019-11-22 15:48:10.630934, took : 0:00:17.088234 
+Finished training model at : 2019-11-22 15:49:55.887900, took : 0:01:45.256966 
+Full process for this model ended at : 2019-11-22 15:49:56.206368, took: 0:02:02.663668
+dm: 0, vector_size: 50, window: 10, epoch: 20, hs: 0, dbow_words: 1 
+Training began at : 2019-11-22 15:49:56.220886 
+Finished building vocabulary at : 2019-11-22 15:50:12.350771, took : 0:00:16.129885 
+Finished training model at : 2019-11-22 16:01:53.077848, took : 0:11:40.727077 
+Full process for this model ended at : 2019-11-22 16:01:53.388427, took: 0:11:57.167541
+dm: 0, vector_size: 50, window: 10, epoch: 20, hs: 1, dbow_words: 0 
+Training began at : 2019-11-22 16:01:53.389425 
+Finished building vocabulary at : 2019-11-22 16:02:10.483774, took : 0:00:17.094349 
+Finished training model at : 2019-11-22 16:05:02.533861, took : 0:02:52.050087 
+Full process for this model ended at : 2019-11-22 16:05:03.546156, took: 0:03:10.156731
+dm: 0, vector_size: 50, window: 10, epoch: 20, hs: 1, dbow_words: 1 
+Training began at : 2019-11-22 16:05:03.546156 
+Finished building vocabulary at : 2019-11-22 16:05:24.043400, took : 0:00:20.497244 
+Finished training model at : 2019-11-22 16:29:43.323620, took : 0:24:19.280220 
+Full process for this model ended at : 2019-11-22 16:29:44.308956, took: 0:24:40.762800
+dm: 0, vector_size: 50, window: 10, epoch: 40, hs: 0, dbow_words: 0 
+Training began at : 2019-11-22 16:29:44.309954 
+Finished building vocabulary at : 2019-11-22 16:30:00.204464, took : 0:00:15.894510 
+Finished training model at : 2019-11-22 16:31:30.421337, took : 0:01:30.216873 
+Full process for this model ended at : 2019-11-22 16:31:30.730618, took: 0:01:46.420664
+dm: 0, vector_size: 50, window: 10, epoch: 40, hs: 0, dbow_words: 1 
+Training began at : 2019-11-22 16:31:30.730618 
+Finished building vocabulary at : 2019-11-22 16:31:46.963266, took : 0:00:16.232648 
+Finished training model at : 2019-11-22 16:42:07.641865, took : 0:10:20.678599 
+Full process for this model ended at : 2019-11-22 16:42:07.953033, took: 0:10:37.222415
+dm: 0, vector_size: 50, window: 10, epoch: 40, hs: 1, dbow_words: 0 
+Training began at : 2019-11-22 16:42:07.953033 
+Finished building vocabulary at : 2019-11-22 16:42:25.270777, took : 0:00:17.317744 
+Finished training model at : 2019-11-22 16:45:02.457479, took : 0:02:37.186702 
+Full process for this model ended at : 2019-11-22 16:45:03.430877, took: 0:02:55.477844
+dm: 0, vector_size: 50, window: 10, epoch: 40, hs: 1, dbow_words: 1 
+Training began at : 2019-11-22 16:45:03.430877 
+Finished building vocabulary at : 2019-11-22 16:45:21.180466, took : 0:00:17.749589 
+Finished training model at : 2019-11-22 17:06:35.362711, took : 0:21:14.182245 
+Full process for this model ended at : 2019-11-22 17:06:36.342075, took: 0:21:32.911198
+dm: 0, vector_size: 50, window: 15, epoch: 20, hs: 0, dbow_words: 0 
+Training began at : 2019-11-22 17:06:36.343067 
+Finished building vocabulary at : 2019-11-22 17:06:52.020196, took : 0:00:15.677129 
+Finished training model at : 2019-11-22 17:08:22.638054, took : 0:01:30.617858 
+Full process for this model ended at : 2019-11-22 17:08:22.943240, took: 0:01:46.600173
+dm: 0, vector_size: 50, window: 15, epoch: 20, hs: 0, dbow_words: 1 
+Training began at : 2019-11-22 17:08:22.956821 
+Finished building vocabulary at : 2019-11-22 17:08:38.291868, took : 0:00:15.335047 
+Finished training model at : 2019-11-22 17:23:46.562947, took : 0:15:08.271079 
+Full process for this model ended at : 2019-11-22 17:23:46.898050, took: 0:15:23.941229
+dm: 0, vector_size: 50, window: 15, epoch: 20, hs: 1, dbow_words: 0 
+Training began at : 2019-11-22 17:23:46.913303 
+Finished building vocabulary at : 2019-11-22 17:24:06.893112, took : 0:00:19.979809 
+Finished training model at : 2019-11-22 17:26:43.998404, took : 0:02:37.105292 
+Full process for this model ended at : 2019-11-22 17:26:44.987840, took: 0:02:58.074537
+dm: 0, vector_size: 50, window: 15, epoch: 20, hs: 1, dbow_words: 1 
+Training began at : 2019-11-22 17:26:45.002272 
+Finished building vocabulary at : 2019-11-22 17:27:03.397154, took : 0:00:18.394882 
+Finished training model at : 2019-11-22 17:57:10.634310, took : 0:30:07.237156 
+Full process for this model ended at : 2019-11-22 17:57:11.625626, took: 0:30:26.623354
+dm: 0, vector_size: 50, window: 15, epoch: 40, hs: 0, dbow_words: 0 
+Training began at : 2019-11-22 17:57:11.625626 
+Finished building vocabulary at : 2019-11-22 17:57:27.555080, took : 0:00:15.929454 
+Finished training model at : 2019-11-22 17:58:54.823950, took : 0:01:27.268870 
+Full process for this model ended at : 2019-11-22 17:58:55.123151, took: 0:01:43.497525
+dm: 0, vector_size: 50, window: 15, epoch: 40, hs: 0, dbow_words: 1 
+Training began at : 2019-11-22 17:58:55.123151 
+Finished building vocabulary at : 2019-11-22 17:59:11.122383, took : 0:00:15.999232 
+Finished training model at : 2019-11-22 18:16:30.026271, took : 0:17:18.903888 
+Full process for this model ended at : 2019-11-22 18:16:30.345386, took: 0:17:35.222235
+dm: 0, vector_size: 50, window: 15, epoch: 40, hs: 1, dbow_words: 0 
+Training began at : 2019-11-22 18:16:30.345386 
+Finished building vocabulary at : 2019-11-22 18:16:51.457950, took : 0:00:21.112564 
+Finished training model at : 2019-11-22 18:19:56.337782, took : 0:03:04.879832 
+Full process for this model ended at : 2019-11-22 18:19:57.441831, took: 0:03:27.096445
+dm: 0, vector_size: 50, window: 15, epoch: 40, hs: 1, dbow_words: 1 
+Training began at : 2019-11-22 18:19:57.441831 
+Finished building vocabulary at : 2019-11-22 18:20:16.850987, took : 0:00:19.409156 
+Finished training model at : 2019-11-22 18:56:18.606956, took : 0:36:01.755969 
+Full process for this model ended at : 2019-11-22 18:56:19.917671, took: 0:36:22.475840
+dm: 0, vector_size: 100, window: 2, epoch: 20, hs: 0, dbow_words: 0 
+Training began at : 2019-11-22 18:56:19.917671 
+Finished building vocabulary at : 2019-11-22 18:56:36.862378, took : 0:00:16.944707 
+Finished training model at : 2019-11-22 18:58:11.547272, took : 0:01:34.684894 
+Full process for this model ended at : 2019-11-22 18:58:12.162314, took: 0:01:52.244643
+dm: 0, vector_size: 100, window: 2, epoch: 20, hs: 0, dbow_words: 1 
+Training began at : 2019-11-22 18:58:12.163312 
+Finished building vocabulary at : 2019-11-22 18:58:29.532882, took : 0:00:17.369570 
+Finished training model at : 2019-11-22 19:02:28.231810, took : 0:03:58.698928 
+Full process for this model ended at : 2019-11-22 19:02:28.829847, took: 0:04:16.666535
+dm: 0, vector_size: 100, window: 2, epoch: 20, hs: 1, dbow_words: 0 
+Model already exists 
+dm: 0, vector_size: 100, window: 2, epoch: 20, hs: 1, dbow_words: 1 
+Training began at : 2019-11-22 19:02:28.829847 
+Finished building vocabulary at : 2019-11-22 19:02:46.748948, took : 0:00:17.919101 
+Finished training model at : 2019-11-22 19:10:35.129291, took : 0:07:48.380343 
+Full process for this model ended at : 2019-11-22 19:10:36.957700, took: 0:08:08.127853
+dm: 0, vector_size: 100, window: 2, epoch: 40, hs: 0, dbow_words: 0 
+Model already exists 
+dm: 0, vector_size: 100, window: 2, epoch: 40, hs: 0, dbow_words: 1 
+Training began at : 2019-11-22 19:10:36.959696 
+Finished building vocabulary at : 2019-11-22 19:10:52.915046, took : 0:00:15.955350 
+Finished training model at : 2019-11-22 19:14:49.918607, took : 0:03:57.003561 
+Full process for this model ended at : 2019-11-22 19:14:50.496802, took: 0:04:13.537106
+dm: 0, vector_size: 100, window: 2, epoch: 40, hs: 1, dbow_words: 0 
+Model already exists 
+dm: 0, vector_size: 100, window: 2, epoch: 40, hs: 1, dbow_words: 1 
+Training began at : 2019-11-22 19:14:50.531056 
+Finished building vocabulary at : 2019-11-22 19:15:08.658602, took : 0:00:18.127546 
+Finished training model at : 2019-11-22 19:22:51.757866, took : 0:07:43.099264 
+Full process for this model ended at : 2019-11-22 19:22:53.158003, took: 0:08:02.626947
+dm: 0, vector_size: 100, window: 4, epoch: 20, hs: 0, dbow_words: 0 
+Model already exists 
+dm: 0, vector_size: 100, window: 4, epoch: 20, hs: 0, dbow_words: 1 
+Training began at : 2019-11-22 19:22:53.181176 
+Finished building vocabulary at : 2019-11-22 19:23:08.824350, took : 0:00:15.643174 
+Finished training model at : 2019-11-22 19:28:35.998411, took : 0:05:27.174061 
+Full process for this model ended at : 2019-11-22 19:28:36.559469, took: 0:05:43.378293
+dm: 0, vector_size: 100, window: 4, epoch: 20, hs: 1, dbow_words: 0 
+Model already exists 
+dm: 0, vector_size: 100, window: 4, epoch: 20, hs: 1, dbow_words: 1 
+Training began at : 2019-11-22 19:28:36.593539 
+Finished building vocabulary at : 2019-11-22 19:28:54.565501, took : 0:00:17.971962 
+Finished training model at : 2019-11-22 19:39:48.889558, took : 0:10:54.324057 
+Full process for this model ended at : 2019-11-22 19:39:50.278119, took: 0:11:13.684580
+dm: 0, vector_size: 100, window: 4, epoch: 40, hs: 0, dbow_words: 0 
+Model already exists 
+dm: 0, vector_size: 100, window: 4, epoch: 40, hs: 0, dbow_words: 1 
+Training began at : 2019-11-22 19:39:50.301393 
+Finished building vocabulary at : 2019-11-22 19:40:06.435263, took : 0:00:16.133870 
+Finished training model at : 2019-11-22 19:45:35.146681, took : 0:05:28.711418 
+Full process for this model ended at : 2019-11-22 19:45:35.705190, took: 0:05:45.403797
+dm: 0, vector_size: 100, window: 4, epoch: 40, hs: 1, dbow_words: 0 
+Model already exists 
+dm: 0, vector_size: 100, window: 4, epoch: 40, hs: 1, dbow_words: 1 
+Training began at : 2019-11-22 19:45:35.738804 
+Finished building vocabulary at : 2019-11-22 19:45:52.927890, took : 0:00:17.189086 
+Finished training model at : 2019-11-22 19:56:36.117207, took : 0:10:43.189317 
+Full process for this model ended at : 2019-11-22 19:56:37.926146, took: 0:11:02.187342
+dm: 0, vector_size: 100, window: 10, epoch: 20, hs: 0, dbow_words: 0 
+Training began at : 2019-11-22 19:56:37.941146 
+Finished building vocabulary at : 2019-11-22 19:56:53.703058, took : 0:00:15.761912 
+Finished training model at : 2019-11-22 19:58:28.399870, took : 0:01:34.696812 
+Full process for this model ended at : 2019-11-22 19:58:28.971866, took: 0:01:51.030720
+dm: 0, vector_size: 100, window: 10, epoch: 20, hs: 0, dbow_words: 1 
+Training began at : 2019-11-22 19:58:28.984832 
+Finished building vocabulary at : 2019-11-22 19:58:44.919237, took : 0:00:15.934405 
+Finished training model at : 2019-11-22 20:09:05.542484, took : 0:10:20.623247 
+Full process for this model ended at : 2019-11-22 20:09:06.159204, took: 0:10:37.174372
+dm: 0, vector_size: 100, window: 10, epoch: 20, hs: 1, dbow_words: 0 
+Training began at : 2019-11-22 20:09:06.173267 
+Finished building vocabulary at : 2019-11-22 20:09:23.869209, took : 0:00:17.695942 
+Finished training model at : 2019-11-22 20:11:55.981019, took : 0:02:32.111810 
+Full process for this model ended at : 2019-11-22 20:11:57.441401, took: 0:02:51.268134
+dm: 0, vector_size: 100, window: 10, epoch: 20, hs: 1, dbow_words: 1 
+Training began at : 2019-11-22 20:11:57.454585 
+Finished building vocabulary at : 2019-11-22 20:12:15.229078, took : 0:00:17.774493 
+Finished training model at : 2019-11-22 20:32:26.972839, took : 0:20:11.743761 
+Full process for this model ended at : 2019-11-22 20:32:28.417017, took: 0:20:30.962432
+dm: 0, vector_size: 100, window: 10, epoch: 40, hs: 0, dbow_words: 0 
+Training began at : 2019-11-22 20:32:28.431401 
+Finished building vocabulary at : 2019-11-22 20:32:43.999777, took : 0:00:15.568376 
+Finished training model at : 2019-11-22 20:34:18.407224, took : 0:01:34.407447 
+Full process for this model ended at : 2019-11-22 20:34:19.000804, took: 0:01:50.569403
+dm: 0, vector_size: 100, window: 10, epoch: 40, hs: 0, dbow_words: 1 
+Training began at : 2019-11-22 20:34:19.000804 
+Finished building vocabulary at : 2019-11-22 20:34:34.867379, took : 0:00:15.866575 
+Finished training model at : 2019-11-22 20:44:32.252404, took : 0:09:57.385025 
+Full process for this model ended at : 2019-11-22 20:44:32.871752, took: 0:10:13.870948
+dm: 0, vector_size: 100, window: 10, epoch: 40, hs: 1, dbow_words: 0 
+Training began at : 2019-11-22 20:44:32.884719 
+Finished building vocabulary at : 2019-11-22 20:44:51.106011, took : 0:00:18.221292 
+Finished training model at : 2019-11-22 20:47:32.399535, took : 0:02:41.293524 
+Full process for this model ended at : 2019-11-22 20:47:33.794023, took: 0:03:00.909304
+dm: 0, vector_size: 100, window: 10, epoch: 40, hs: 1, dbow_words: 1 
+Training began at : 2019-11-22 20:47:33.795024 
+Finished building vocabulary at : 2019-11-22 20:47:51.750026, took : 0:00:17.955002 
+Finished training model at : 2019-11-22 21:08:02.890211, took : 0:20:11.140185 
+Full process for this model ended at : 2019-11-22 21:08:04.352271, took: 0:20:30.557247
+dm: 0, vector_size: 100, window: 15, epoch: 20, hs: 0, dbow_words: 0 
+Training began at : 2019-11-22 21:08:04.352271 
+Finished building vocabulary at : 2019-11-22 21:08:20.106196, took : 0:00:15.753925 
+Finished training model at : 2019-11-22 21:09:54.410075, took : 0:01:34.303879 
+Full process for this model ended at : 2019-11-22 21:09:54.988401, took: 0:01:50.636130
+dm: 0, vector_size: 100, window: 15, epoch: 20, hs: 0, dbow_words: 1 
+Training began at : 2019-11-22 21:09:54.988401 
+Finished building vocabulary at : 2019-11-22 21:10:10.715362, took : 0:00:15.726961 
+Finished training model at : 2019-11-22 21:23:53.379946, took : 0:13:42.664584 
+Full process for this model ended at : 2019-11-22 21:23:53.953336, took: 0:13:58.964935
+dm: 0, vector_size: 100, window: 15, epoch: 20, hs: 1, dbow_words: 0 
+Training began at : 2019-11-22 21:23:53.953336 
+Finished building vocabulary at : 2019-11-22 21:24:11.700933, took : 0:00:17.747597 
+Finished training model at : 2019-11-22 21:26:52.889019, took : 0:02:41.188086 
+Full process for this model ended at : 2019-11-22 21:26:54.367306, took: 0:03:00.413970
+dm: 0, vector_size: 100, window: 15, epoch: 20, hs: 1, dbow_words: 1 
+Training began at : 2019-11-22 21:26:54.367306 
+Finished building vocabulary at : 2019-11-22 21:27:12.105888, took : 0:00:17.738582 
+Finished training model at : 2019-11-22 21:54:35.584267, took : 0:27:23.478379 
+Full process for this model ended at : 2019-11-22 21:54:37.049794, took: 0:27:42.682488
+dm: 0, vector_size: 100, window: 15, epoch: 40, hs: 0, dbow_words: 0 
+Training began at : 2019-11-22 21:54:37.049794 
+Finished building vocabulary at : 2019-11-22 21:54:53.405074, took : 0:00:16.355280 
+Finished training model at : 2019-11-22 21:56:28.303487, took : 0:01:34.898413 
+Full process for this model ended at : 2019-11-22 21:56:28.884903, took: 0:01:51.835109
+dm: 0, vector_size: 100, window: 15, epoch: 40, hs: 0, dbow_words: 1 
+Training began at : 2019-11-22 21:56:28.884903 
+Finished building vocabulary at : 2019-11-22 21:56:44.898062, took : 0:00:16.013159 
+Finished training model at : 2019-11-22 22:10:32.546927, took : 0:13:47.648865 
+Full process for this model ended at : 2019-11-22 22:10:33.105131, took: 0:14:04.220228
+dm: 0, vector_size: 100, window: 15, epoch: 40, hs: 1, dbow_words: 0 
+Training began at : 2019-11-22 22:10:33.105131 
+Finished building vocabulary at : 2019-11-22 22:10:50.551496, took : 0:00:17.446365 
+Finished training model at : 2019-11-22 22:13:31.103626, took : 0:02:40.552130 
+Full process for this model ended at : 2019-11-22 22:13:32.943109, took: 0:02:59.837978
+dm: 0, vector_size: 100, window: 15, epoch: 40, hs: 1, dbow_words: 1 
+Training began at : 2019-11-22 22:13:32.943109 
+Finished building vocabulary at : 2019-11-22 22:13:50.956036, took : 0:00:18.012927 
+Finished training model at : 2019-11-22 22:42:55.929542, took : 0:29:04.973506 
+Full process for this model ended at : 2019-11-22 22:42:57.402882, took: 0:29:24.459773
+dm: 1, vector_size: 50, window: 2, epoch: 20, hs: 0, dbow_words: 0 
+Model already exists 
+dm: 1, vector_size: 50, window: 2, epoch: 20, hs: 0, dbow_words: 1 
+Training began at : 2019-11-22 22:42:57.443255 
+Finished building vocabulary at : 2019-11-22 22:43:12.934850, took : 0:00:15.491595 
+Finished training model at : 2019-11-22 22:45:18.147415, took : 0:02:05.212565 
+Full process for this model ended at : 2019-11-22 22:45:18.478529, took: 0:02:21.035274
+dm: 1, vector_size: 50, window: 2, epoch: 20, hs: 1, dbow_words: 0 
+Model already exists 
+dm: 1, vector_size: 50, window: 2, epoch: 20, hs: 1, dbow_words: 1 
+Training began at : 2019-11-22 22:45:18.527652 
+Finished building vocabulary at : 2019-11-22 22:45:36.502559, took : 0:00:17.974907 
+Finished training model at : 2019-11-22 22:48:46.909592, took : 0:03:10.406036 
+Full process for this model ended at : 2019-11-22 22:48:48.009169, took: 0:03:29.481517
+dm: 1, vector_size: 50, window: 2, epoch: 40, hs: 0, dbow_words: 0 
+Model already exists 
+dm: 1, vector_size: 50, window: 2, epoch: 40, hs: 0, dbow_words: 1 
+Training began at : 2019-11-22 22:48:48.041037 
+Finished building vocabulary at : 2019-11-22 22:49:03.483760, took : 0:00:15.442723 
+Finished training model at : 2019-11-22 22:51:10.018137, took : 0:02:06.534377 
+Full process for this model ended at : 2019-11-22 22:51:10.324318, took: 0:02:22.283281
+dm: 1, vector_size: 50, window: 2, epoch: 40, hs: 1, dbow_words: 0 
+Model already exists 
+dm: 1, vector_size: 50, window: 2, epoch: 40, hs: 1, dbow_words: 1 
+Training began at : 2019-11-22 22:51:10.357784 
+Finished building vocabulary at : 2019-11-22 22:51:28.352684, took : 0:00:17.994900 
+Finished training model at : 2019-11-22 22:54:34.907811, took : 0:03:06.554129 
+Full process for this model ended at : 2019-11-22 22:54:35.984974, took: 0:03:25.627190
+dm: 1, vector_size: 50, window: 4, epoch: 20, hs: 0, dbow_words: 0 
+Model already exists 
+dm: 1, vector_size: 50, window: 4, epoch: 20, hs: 0, dbow_words: 1 
+Training began at : 2019-11-22 22:54:36.014818 
+Finished building vocabulary at : 2019-11-22 22:54:51.538321, took : 0:00:15.523503 
+Finished training model at : 2019-11-22 22:57:03.376927, took : 0:02:11.838606 
+Full process for this model ended at : 2019-11-22 22:57:03.683108, took: 0:02:27.668290
+dm: 1, vector_size: 50, window: 4, epoch: 20, hs: 1, dbow_words: 0 
+Model already exists 
+dm: 1, vector_size: 50, window: 4, epoch: 20, hs: 1, dbow_words: 1 
+Training began at : 2019-11-22 22:57:03.734432 
+Finished building vocabulary at : 2019-11-22 22:57:21.361605, took : 0:00:17.627173 
+Finished training model at : 2019-11-22 23:00:32.888258, took : 0:03:11.526653 
+Full process for this model ended at : 2019-11-22 23:00:33.881602, took: 0:03:30.147170
+dm: 1, vector_size: 50, window: 4, epoch: 40, hs: 0, dbow_words: 0 
+Model already exists 
+dm: 1, vector_size: 50, window: 4, epoch: 40, hs: 0, dbow_words: 1 
+Training began at : 2019-11-22 23:00:33.916011 
+Finished building vocabulary at : 2019-11-22 23:00:49.912289, took : 0:00:15.996278 
+Finished training model at : 2019-11-22 23:02:58.972628, took : 0:02:09.060339 
+Full process for this model ended at : 2019-11-22 23:02:59.277821, took: 0:02:25.361810
+dm: 1, vector_size: 50, window: 4, epoch: 40, hs: 1, dbow_words: 0 
+Model already exists 
+dm: 1, vector_size: 50, window: 4, epoch: 40, hs: 1, dbow_words: 1 
+Training began at : 2019-11-22 23:02:59.329745 
+Finished building vocabulary at : 2019-11-22 23:03:17.332625, took : 0:00:18.002880 
+Finished training model at : 2019-11-22 23:06:30.677722, took : 0:03:13.345097 
+Full process for this model ended at : 2019-11-22 23:06:31.733901, took: 0:03:32.404156
+dm: 1, vector_size: 50, window: 10, epoch: 20, hs: 0, dbow_words: 0 
+Training began at : 2019-11-22 23:06:31.747557 
+Finished building vocabulary at : 2019-11-22 23:06:47.442618, took : 0:00:15.695061 
+Finished training model at : 2019-11-22 23:09:16.313055, took : 0:02:28.870437 
+Full process for this model ended at : 2019-11-22 23:09:16.633200, took: 0:02:44.885643
+dm: 1, vector_size: 50, window: 10, epoch: 20, hs: 0, dbow_words: 1 
+Training began at : 2019-11-22 23:09:16.634208 
+Finished building vocabulary at : 2019-11-22 23:09:32.409065, took : 0:00:15.774857 
+Finished training model at : 2019-11-22 23:12:05.081519, took : 0:02:32.672454 
+Full process for this model ended at : 2019-11-22 23:12:05.386882, took: 0:02:48.752674
+dm: 1, vector_size: 50, window: 10, epoch: 20, hs: 1, dbow_words: 0 
+Training began at : 2019-11-22 23:12:05.387844 
+Finished building vocabulary at : 2019-11-22 23:12:23.525360, took : 0:00:18.137516 
+Finished training model at : 2019-11-22 23:15:53.508631, took : 0:03:29.983271 
+Full process for this model ended at : 2019-11-22 23:15:54.502971, took: 0:03:49.115127
+dm: 1, vector_size: 50, window: 10, epoch: 20, hs: 1, dbow_words: 1 
+Training began at : 2019-11-22 23:15:54.516409 
+Finished building vocabulary at : 2019-11-22 23:16:12.237043, took : 0:00:17.720634 
+Finished training model at : 2019-11-22 23:19:46.717771, took : 0:03:34.480728 
+Full process for this model ended at : 2019-11-22 23:19:47.662245, took: 0:03:53.145836
+dm: 1, vector_size: 50, window: 10, epoch: 40, hs: 0, dbow_words: 0 
+Training began at : 2019-11-22 23:19:47.677056 
+Finished building vocabulary at : 2019-11-22 23:20:03.376130, took : 0:00:15.699074 
+Finished training model at : 2019-11-22 23:22:33.412964, took : 0:02:30.036834 
+Full process for this model ended at : 2019-11-22 23:22:33.721140, took: 0:02:46.044084
+dm: 1, vector_size: 50, window: 10, epoch: 40, hs: 0, dbow_words: 1 
+Training began at : 2019-11-22 23:22:33.735232 
+Finished building vocabulary at : 2019-11-22 23:22:50.151300, took : 0:00:16.416068 
+Finished training model at : 2019-11-22 23:25:13.548212, took : 0:02:23.396912 
+Full process for this model ended at : 2019-11-22 23:25:13.852398, took: 0:02:40.117166
+dm: 1, vector_size: 50, window: 10, epoch: 40, hs: 1, dbow_words: 0 
+Training began at : 2019-11-22 23:25:13.867377 
+Finished building vocabulary at : 2019-11-22 23:25:31.684730, took : 0:00:17.817353 
+Finished training model at : 2019-11-22 23:29:01.551493, took : 0:03:29.866763 
+Full process for this model ended at : 2019-11-22 23:29:02.566779, took: 0:03:48.699402
+dm: 1, vector_size: 50, window: 10, epoch: 40, hs: 1, dbow_words: 1 
+Training began at : 2019-11-22 23:29:02.569771 
+Finished building vocabulary at : 2019-11-22 23:29:20.686379, took : 0:00:18.116608 
+Finished training model at : 2019-11-22 23:32:52.267535, took : 0:03:31.581156 
+Full process for this model ended at : 2019-11-22 23:32:53.282822, took: 0:03:50.713051
+dm: 1, vector_size: 50, window: 15, epoch: 20, hs: 0, dbow_words: 0 
+Training began at : 2019-11-22 23:32:53.300088 
+Finished building vocabulary at : 2019-11-22 23:33:09.161665, took : 0:00:15.861577 
+Finished training model at : 2019-11-22 23:35:38.037830, took : 0:02:28.876165 
+Full process for this model ended at : 2019-11-22 23:35:38.373933, took: 0:02:45.073845
+dm: 1, vector_size: 50, window: 15, epoch: 20, hs: 0, dbow_words: 1 
+Training began at : 2019-11-22 23:35:38.385901 
+Finished building vocabulary at : 2019-11-22 23:35:54.361197, took : 0:00:15.975296 
+Finished training model at : 2019-11-22 23:38:23.125782, took : 0:02:28.764585 
+Full process for this model ended at : 2019-11-22 23:38:23.442297, took: 0:02:45.056396
+dm: 1, vector_size: 50, window: 15, epoch: 20, hs: 1, dbow_words: 0 
+Training began at : 2019-11-22 23:38:23.446293 
+Finished building vocabulary at : 2019-11-22 23:38:41.299603, took : 0:00:17.853310 
+Finished training model at : 2019-11-22 23:42:18.151836, took : 0:03:36.852233 
+Full process for this model ended at : 2019-11-22 23:42:19.190746, took: 0:03:55.744453
+dm: 1, vector_size: 50, window: 15, epoch: 20, hs: 1, dbow_words: 1 
+Training began at : 2019-11-22 23:42:19.205723 
+Finished building vocabulary at : 2019-11-22 23:42:36.891488, took : 0:00:17.685765 
+Finished training model at : 2019-11-22 23:46:14.600887, took : 0:03:37.709399 
+Full process for this model ended at : 2019-11-22 23:46:15.632129, took: 0:03:56.426406
+dm: 1, vector_size: 50, window: 15, epoch: 40, hs: 0, dbow_words: 0 
+Training began at : 2019-11-22 23:46:15.646170 
+Finished building vocabulary at : 2019-11-22 23:46:31.016091, took : 0:00:15.369921 
+Finished training model at : 2019-11-22 23:49:00.219254, took : 0:02:29.203163 
+Full process for this model ended at : 2019-11-22 23:49:00.529424, took: 0:02:44.883254
+dm: 1, vector_size: 50, window: 15, epoch: 40, hs: 0, dbow_words: 1 
+Training began at : 2019-11-22 23:49:00.544226 
+Finished building vocabulary at : 2019-11-22 23:49:16.362944, took : 0:00:15.818718 
+Finished training model at : 2019-11-22 23:51:45.864875, took : 0:02:29.501931 
+Full process for this model ended at : 2019-11-22 23:51:46.185018, took: 0:02:45.640792
+dm: 1, vector_size: 50, window: 15, epoch: 40, hs: 1, dbow_words: 0 
+Training began at : 2019-11-22 23:51:46.199051 
+Finished building vocabulary at : 2019-11-22 23:52:03.958596, took : 0:00:17.759545 
+Finished training model at : 2019-11-22 23:55:38.693897, took : 0:03:34.735301 
+Full process for this model ended at : 2019-11-22 23:55:39.642361, took: 0:03:53.443310
+dm: 1, vector_size: 50, window: 15, epoch: 40, hs: 1, dbow_words: 1 
+Training began at : 2019-11-22 23:55:39.659017 
+Finished building vocabulary at : 2019-11-22 23:55:57.493343, took : 0:00:17.834326 
+Finished training model at : 2019-11-22 23:59:34.195376, took : 0:03:36.702033 
+Full process for this model ended at : 2019-11-22 23:59:35.220809, took: 0:03:55.561792
+dm: 1, vector_size: 100, window: 2, epoch: 20, hs: 0, dbow_words: 0 
+Model already exists 
+dm: 1, vector_size: 100, window: 2, epoch: 20, hs: 0, dbow_words: 1 
+Training began at : 2019-11-22 23:59:35.244164 
+Finished building vocabulary at : 2019-11-22 23:59:51.232082, took : 0:00:15.987918 
+Finished training model at : 2019-11-23 00:02:01.317006, took : 0:02:10.084924 
+Full process for this model ended at : 2019-11-23 00:02:01.926285, took: 0:02:26.682121
+dm: 1, vector_size: 100, window: 2, epoch: 20, hs: 1, dbow_words: 0 
+Model already exists 
+dm: 1, vector_size: 100, window: 2, epoch: 20, hs: 1, dbow_words: 1 
+Training began at : 2019-11-23 00:02:01.977271 
+Finished building vocabulary at : 2019-11-23 00:02:19.979138, took : 0:00:18.001867 
+Finished training model at : 2019-11-23 00:05:28.296166, took : 0:03:08.317028 
+Full process for this model ended at : 2019-11-23 00:05:29.702381, took: 0:03:27.725110
+dm: 1, vector_size: 100, window: 2, epoch: 40, hs: 0, dbow_words: 0 
+Model already exists 
+dm: 1, vector_size: 100, window: 2, epoch: 40, hs: 0, dbow_words: 1 
+Training began at : 2019-11-23 00:05:29.734598 
+Finished building vocabulary at : 2019-11-23 00:05:45.323963, took : 0:00:15.589365 
+Finished training model at : 2019-11-23 00:07:59.740747, took : 0:02:14.416784 
+Full process for this model ended at : 2019-11-23 00:08:00.324139, took: 0:02:30.589541
+dm: 1, vector_size: 100, window: 2, epoch: 40, hs: 1, dbow_words: 0 
+Model already exists 
+dm: 1, vector_size: 100, window: 2, epoch: 40, hs: 1, dbow_words: 1 
+Training began at : 2019-11-23 00:08:00.343436 
+Finished building vocabulary at : 2019-11-23 00:08:18.630556, took : 0:00:18.287120 
+Finished training model at : 2019-11-23 00:11:27.541687, took : 0:03:08.911131 
+Full process for this model ended at : 2019-11-23 00:11:30.498686, took: 0:03:30.155250
+dm: 1, vector_size: 100, window: 4, epoch: 20, hs: 0, dbow_words: 0 
+Model already exists 
+dm: 1, vector_size: 100, window: 4, epoch: 20, hs: 0, dbow_words: 1 
+Training began at : 2019-11-23 00:11:30.530601 
+Finished building vocabulary at : 2019-11-23 00:11:46.428104, took : 0:00:15.897503 
+Finished training model at : 2019-11-23 00:13:57.584968, took : 0:02:11.156864 
+Full process for this model ended at : 2019-11-23 00:13:58.159881, took: 0:02:27.629280
+dm: 1, vector_size: 100, window: 4, epoch: 20, hs: 1, dbow_words: 0 
+Model already exists 
+dm: 1, vector_size: 100, window: 4, epoch: 20, hs: 1, dbow_words: 1 
+Training began at : 2019-11-23 00:13:58.192200 
+Finished building vocabulary at : 2019-11-23 00:14:15.795146, took : 0:00:17.602946 
+Finished training model at : 2019-11-23 00:17:29.121506, took : 0:03:13.326360 
+Full process for this model ended at : 2019-11-23 00:17:30.541590, took: 0:03:32.349390
+dm: 1, vector_size: 100, window: 4, epoch: 40, hs: 0, dbow_words: 0 
+Model already exists 
+dm: 1, vector_size: 100, window: 4, epoch: 40, hs: 0, dbow_words: 1 
+Training began at : 2019-11-23 00:17:30.574430 
+Finished building vocabulary at : 2019-11-23 00:17:45.997203, took : 0:00:15.422773 
+Finished training model at : 2019-11-23 00:19:53.598480, took : 0:02:07.601277 
+Full process for this model ended at : 2019-11-23 00:19:54.172872, took: 0:02:23.598442
+dm: 1, vector_size: 100, window: 4, epoch: 40, hs: 1, dbow_words: 0 
+Model already exists 
+dm: 1, vector_size: 100, window: 4, epoch: 40, hs: 1, dbow_words: 1 
+Training began at : 2019-11-23 00:19:54.206078 
+Finished building vocabulary at : 2019-11-23 00:20:11.702299, took : 0:00:17.496221 
+Finished training model at : 2019-11-23 00:23:17.014800, took : 0:03:05.312501 
+Full process for this model ended at : 2019-11-23 00:23:18.817653, took: 0:03:24.611575
+dm: 1, vector_size: 100, window: 10, epoch: 20, hs: 0, dbow_words: 0 
+Training began at : 2019-11-23 00:23:18.830618 
+Finished building vocabulary at : 2019-11-23 00:23:34.317221, took : 0:00:15.486603 
+Finished training model at : 2019-11-23 00:26:05.770351, took : 0:02:31.453130 
+Full process for this model ended at : 2019-11-23 00:26:06.348966, took: 0:02:47.518348
+dm: 1, vector_size: 100, window: 10, epoch: 20, hs: 0, dbow_words: 1 
+Training began at : 2019-11-23 00:26:06.362929 
+Finished building vocabulary at : 2019-11-23 00:26:22.394076, took : 0:00:16.031147 
+Finished training model at : 2019-11-23 00:28:53.934607, took : 0:02:31.540531 
+Full process for this model ended at : 2019-11-23 00:28:54.535182, took: 0:02:48.172253
+dm: 1, vector_size: 100, window: 10, epoch: 20, hs: 1, dbow_words: 0 
+Training began at : 2019-11-23 00:28:54.536178 
+Finished building vocabulary at : 2019-11-23 00:29:12.555014, took : 0:00:18.018836 
+Finished training model at : 2019-11-23 00:32:40.772744, took : 0:03:28.217730 
+Full process for this model ended at : 2019-11-23 00:32:42.200754, took: 0:03:47.664576
+dm: 1, vector_size: 100, window: 10, epoch: 20, hs: 1, dbow_words: 1 
+Training began at : 2019-11-23 00:32:42.214757 
+Finished building vocabulary at : 2019-11-23 00:33:00.782209, took : 0:00:18.567452 
+Finished training model at : 2019-11-23 00:36:31.362917, took : 0:03:30.580708 
+Full process for this model ended at : 2019-11-23 00:36:32.772001, took: 0:03:50.557244
+dm: 1, vector_size: 100, window: 10, epoch: 40, hs: 0, dbow_words: 0 
+Training began at : 2019-11-23 00:36:32.786126 
+Finished building vocabulary at : 2019-11-23 00:36:48.706570, took : 0:00:15.920444 
+Finished training model at : 2019-11-23 00:39:19.020095, took : 0:02:30.313525 
+Full process for this model ended at : 2019-11-23 00:39:19.578606, took: 0:02:46.792480
+dm: 1, vector_size: 100, window: 10, epoch: 40, hs: 0, dbow_words: 1 
+Training began at : 2019-11-23 00:39:19.591571 
+Finished building vocabulary at : 2019-11-23 00:39:35.358425, took : 0:00:15.766854 
+Finished training model at : 2019-11-23 00:42:06.120505, took : 0:02:30.762080 
+Full process for this model ended at : 2019-11-23 00:42:06.709351, took: 0:02:47.117780
+dm: 1, vector_size: 100, window: 10, epoch: 40, hs: 1, dbow_words: 0 
+Training began at : 2019-11-23 00:42:06.722316 
+Finished building vocabulary at : 2019-11-23 00:42:24.682307, took : 0:00:17.959991 
+Finished training model at : 2019-11-23 00:45:53.148176, took : 0:03:28.465869 
+Full process for this model ended at : 2019-11-23 00:45:54.580629, took: 0:03:47.858313
+dm: 1, vector_size: 100, window: 10, epoch: 40, hs: 1, dbow_words: 1 
+Training began at : 2019-11-23 00:45:54.594644 
+Finished building vocabulary at : 2019-11-23 00:46:12.045997, took : 0:00:17.451353 
+Finished training model at : 2019-11-23 00:49:42.862962, took : 0:03:30.816965 
+Full process for this model ended at : 2019-11-23 00:49:44.285481, took: 0:03:49.690837
+dm: 1, vector_size: 100, window: 15, epoch: 20, hs: 0, dbow_words: 0 
+Training began at : 2019-11-23 00:49:44.296443 
+Finished building vocabulary at : 2019-11-23 00:50:00.326594, took : 0:00:16.030151 
+Finished training model at : 2019-11-23 00:52:27.310067, took : 0:02:26.983473 
+Full process for this model ended at : 2019-11-23 00:52:27.877076, took: 0:02:43.580633
+dm: 1, vector_size: 100, window: 15, epoch: 20, hs: 0, dbow_words: 1 
+Training began at : 2019-11-23 00:52:27.878073 
+Finished building vocabulary at : 2019-11-23 00:52:43.660883, took : 0:00:15.782810 
+Finished training model at : 2019-11-23 00:55:06.977622, took : 0:02:23.316739 
+Full process for this model ended at : 2019-11-23 00:55:07.564654, took: 0:02:39.686581
+dm: 1, vector_size: 100, window: 15, epoch: 20, hs: 1, dbow_words: 0 
+Training began at : 2019-11-23 00:55:07.577619 
+Finished building vocabulary at : 2019-11-23 00:55:25.552606, took : 0:00:17.974987 
+Finished training model at : 2019-11-23 00:58:58.601066, took : 0:03:33.048460 
+Full process for this model ended at : 2019-11-23 00:59:00.061456, took: 0:03:52.483837
+dm: 1, vector_size: 100, window: 15, epoch: 20, hs: 1, dbow_words: 1 
+Training began at : 2019-11-23 00:59:00.062451 
+Finished building vocabulary at : 2019-11-23 00:59:17.466962, took : 0:00:17.404511 
+Finished training model at : 2019-11-23 01:02:51.086233, took : 0:03:33.619271 
+Full process for this model ended at : 2019-11-23 01:02:52.504435, took: 0:03:52.441984
+dm: 1, vector_size: 100, window: 15, epoch: 40, hs: 0, dbow_words: 0 
+Training began at : 2019-11-23 01:02:52.518062 
+Finished building vocabulary at : 2019-11-23 01:03:08.568193, took : 0:00:16.050131 
+Finished training model at : 2019-11-23 01:05:35.481042, took : 0:02:26.912849 
+Full process for this model ended at : 2019-11-23 01:05:36.078758, took: 0:02:43.560696
+dm: 1, vector_size: 100, window: 15, epoch: 40, hs: 0, dbow_words: 1 
+Training began at : 2019-11-23 01:05:36.091724 
+Finished building vocabulary at : 2019-11-23 01:05:51.702028, took : 0:00:15.610304 
+Finished training model at : 2019-11-23 01:08:22.591662, took : 0:02:30.889634 
+Full process for this model ended at : 2019-11-23 01:08:23.191967, took: 0:02:47.100243
+dm: 1, vector_size: 100, window: 15, epoch: 40, hs: 1, dbow_words: 0 
+Training began at : 2019-11-23 01:08:23.204939 
+Finished building vocabulary at : 2019-11-23 01:08:41.160931, took : 0:00:17.955992 
+Finished training model at : 2019-11-23 01:12:14.510391, took : 0:03:33.349460 
+Full process for this model ended at : 2019-11-23 01:12:15.984530, took: 0:03:52.779591
+dm: 1, vector_size: 100, window: 15, epoch: 40, hs: 1, dbow_words: 1 
+Training began at : 2019-11-23 01:12:15.997525 
+Finished building vocabulary at : 2019-11-23 01:12:33.724144, took : 0:00:17.726619 
+Finished training model at : 2019-11-23 01:16:08.879008, took : 0:03:35.154864 
+Full process for this model ended at : 2019-11-23 01:16:11.225555, took: 0:03:55.228030
