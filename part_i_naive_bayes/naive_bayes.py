@@ -3,10 +3,11 @@ import numpy as np
 from helpers.helpers_nb import create_freq_bow, predict_naive_bayes
 from helpers.helpers_bow import create_feat_no_s, create_feat_n_gram, create_feat, create_bow
 from helpers.helpers_gen import sign_test
+from ressources.settings import FREQ_CUTOFF
 
 
 class NaiveBayes:
-	def __init__(self, t, smoothing, freq_cutoff, feat_type='freq'):
+	def __init__(self, t, smoothing=1, freq_cutoff=FREQ_CUTOFF, feat_type='freq'):
 		# type in ['unigram', 'bigram', 'joint']
 		# freq_cutoff = {'unigram': 1, 'bigram': 4} for example
 		self.type_to_calc = {'unigram': [1], 'bigram': [2], 'joint': [1, 2]}
@@ -64,11 +65,11 @@ class NaiveBayes:
 
 			feat = []
 			for nb in self.type_to_calc[self.type]:  # creates features of doc to predict
-				feat += create_feat(feat_no_s_1=feat_no_s_1, file_path=file_path, n=nb)
+				feat += create_feat(feat_no_s_1=feat_no_s_1, n=nb)
 			
 			predicted_file, randomed = predict_naive_bayes(feat=feat, freq_bow=self.freq_bow, 
-															n_neg=self.n_neg, n_pos=self.n_pos, n=self.n,
-															feat_type=self.feat_type)
+														   n_neg=self.n_neg, n_pos=self.n_pos, n=self.n,
+														   feat_type=self.feat_type)
 			y.append(predicted_file)
 			self.randomed.append((index, randomed))
 		return y

@@ -8,10 +8,10 @@ from data_model.formatted_data import X_train, y_train
 
 param_grid = {'doc2vec__dm': [0],  # [0, 1]
               'doc2vec__vector_size': [100],  # [50, 100]
-              'doc2vec__window': [10],  # [2, 4, 10, 15]
+              'doc2vec__window': [10, 15],  # [2, 4, 10, 15]
               'doc2vec__epochs': [20],  # [20, 40]
               'doc2vec__hs': [1],  # [0,1]
-              'doc2vec__dbow_words': [0],  # [0, 1]
+              'doc2vec__dbow_words': [0, 1],  # [0, 1]
               'doc2vec__alpha_infer': [None],  # [None, 0.01]
               'doc2vec__epochs_infer': [None],  # [None, 500, 1000]
               'svm__kernel': ['linear', 'rbf', 'poly'],  # ['linear', 'rbf', 'poly']

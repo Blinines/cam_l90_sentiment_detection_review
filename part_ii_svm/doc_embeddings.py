@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
+import sys
 import numpy as np
 from scipy import sparse
 from collections import Counter
 from os import listdir
 from gensim.models.doc2vec import Doc2Vec
+from sklearn.preprocessing import normalize
 from sklearn.base import BaseEstimator
 from sklearn.feature_extraction.text import TfidfTransformer
-from helpers.helpers_bow import create_feat_no_s, create_bow
+from helpers.helpers_bow import create_feat_no_s, create_feat, create_bow
 from part_ii_svm.create_doc2vec_model import read_corpus, train_save
-from ressources.settings import SVM_TRAIN_FILE_DIR
+from ressources.settings import SVM_TRAIN_FILE_DIR, FREQ_CUTOFF
 
 
 class Doc2VecModel(BaseEstimator):
@@ -56,7 +58,7 @@ class Doc2VecModel(BaseEstimator):
 
 class SVMBOW:
 
-    def __init__(self, t, freq_cutoff, tf_idf=0):
+    def __init__(self, t, freq_cutoff=FREQ_CUTOFF, tf_idf=0, norm=True):
         # t is type, in ['unigram', 'bigram', 'joint']
         # freq_cutoff = {'unigram': 1, 'bigram': 4} for example
         self.bow = None
@@ -64,6 +66,7 @@ class SVMBOW:
         self.type_to_calc = {'unigram': [1], 'bigram': [2], 'joint': [1, 2]}
         self.freq_cutoff = freq_cutoff
         self.tf_idf = tf_idf
+        self.norm = norm
     
     def map_word_to_id(self, bow_count):
         word_to_id = Counter()
@@ -74,13 +77,16 @@ class SVMBOW:
     
     def create_vect_for_doc(self, file_path, word_to_id):
         x = np.zeros((1, len(word_to_id.keys())))
-        features = create_feat_no_s(file_path=file_path)
-        for feat in features:
-            if feat in word_to_id.keys():
-                x[0, word_to_id[feat]] += 1
+        feat_no_s = create_feat_no_s(file_path=file_path)
+
+        for nb in self.type_to_calc[self.t]:  # processing type of features separately
+            features = create_feat(feat_no_s_1=feat_no_s, n=nb)
+            for feat in features:
+                if feat in word_to_id.keys():
+                    x[0, word_to_id[feat]] += 1
         return x
         
-    def fit(self, raw_documents):
+    def fit(self, raw_documents, y=None):
         bow_count = {}
         for nb in self.type_to_calc[self.t]:
             curr_bow= create_bow(raw_documents, self.freq_cutoff[nb], nb)[0]
@@ -89,10 +95,14 @@ class SVMBOW:
         self.bow = self.map_word_to_id(bow_count=bow_count)
         return self
     
-    def transform(self, raw_documents):
+    def transform(self, raw_documents, y=None):
         X = np.zeros((len(raw_documents), len(self.bow.keys())))
         for index, doc in enumerate(raw_documents):
-            X[index, :] = self.create_vect_for_doc(file_path=doc, word_to_id=self.bow)
+            vect_bow = self.create_vect_for_doc(file_path=doc, word_to_id=self.bow)
+            if self.norm:
+                X[index, :] = normalize(vect_bow)
+            else:
+                X[index, :] = vect_bow
         
         if self.tf_idf:
             tf_transformer = TfidfTransformer(use_idf=False).fit(X)

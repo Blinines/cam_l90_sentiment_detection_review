@@ -32,7 +32,7 @@ def create_feat_n_gram(feat_no_s, n):
 	return feat_n_gram
 
 
-def create_feat(feat_no_s_1, file_path, n):
+def create_feat(feat_no_s_1, n):
 	# Creating features list for the file with n words
 	if n == 1:
 		return feat_no_s_1
@@ -47,7 +47,7 @@ def create_bow(files_list, freq_cutoff, n):
 	word_total_count = 0
 	for file_path in files_list:
 		feat_no_s_1 = create_feat_no_s(file_path=file_path)
-		feat = create_feat(feat_no_s_1=feat_no_s_1, file_path=file_path, n=n)
+		feat = create_feat(feat_no_s_1=feat_no_s_1, n=n)
 		for f in feat:
 			word_count[f.lower()] += 1
 			# word_count[f] += 1

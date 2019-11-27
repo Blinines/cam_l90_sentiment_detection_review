@@ -6,12 +6,12 @@ from ressources.settings import PATH_NEG_TAG, PATH_POS_TAG
 # Stratified RR folders for POS and NEG reviews
 fold_rr_neg = folder_round_robin(files_path=PATH_NEG_TAG, mod=10)
 X_train_neg = []
-for i in range(1, 10):
+for i in range(2, 10):
     X_train_neg += fold_rr_neg[i]
 
 fold_rr_pos = folder_round_robin(files_path=PATH_POS_TAG, mod=10)
 X_train_pos = []
-for i in range(1, 10):
+for i in range(2, 10):
     X_train_pos += fold_rr_pos[i]
 
 
@@ -19,10 +19,10 @@ for i in range(1, 10):
 X_train = X_train_neg + X_train_pos
 y_train = [0]*len(X_train_neg) + [1]*len(X_train_pos)
 
-# # Dev data
-# X_dev_neg, X_dev_pos = fold_rr_neg[1], fold_rr_pos[1]
-# X_dev = X_dev_neg + X_dev_pos
-# y_dev = [0]*len(X_dev_neg) + [1]*len(X_dev_pos) 
+# Dev data
+X_dev_neg, X_dev_pos = fold_rr_neg[1], fold_rr_pos[1]
+X_dev = X_dev_neg + X_dev_pos
+y_dev = [0]*len(X_dev_neg) + [1]*len(X_dev_pos) 
 
 
 # Test data
