@@ -5,6 +5,8 @@ from decimal import Decimal
 from itertools import permutations
 from copy import deepcopy
 
+""" Mostly helpers for statistical tests : sign test and permutation test """
+
 def get_variance(l):
     # Computing variance of list
     mean_val = np.mean(l)

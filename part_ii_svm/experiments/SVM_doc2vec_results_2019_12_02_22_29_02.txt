@@ -1,0 +1,46 @@
+Results for CV - SVM doc2vec - 2019-12-02 22:29:02.839937 
+==========
+Model fine tuned for dm_0_dbow_words_0 : dm => 0, dbow_words => 0 
+Process for GridSearchCV began at: 2019-12-02 22:29:02.840141 
+Gridsearch CV ended at : 2019-12-03 00:43:44.237108, took : 2:14:41.396967 
+Best params: {'doc2vec__epochs': 20, 'doc2vec__epochs_infer': None, 'svm__C': 0.1, 'svm__kernel': 'linear', 'doc2vec__hs': 1, 'svm__gamma': 'scale', 'doc2vec__vector_size': 100, 'doc2vec__window': 10, 'svm__degree': 3, 'doc2vec__alpha_infer': None} 
+Best score: 0.9025 
+Evaluating on dev set 
+Process for dev set began at: 2019-12-03 00:43:44.237454 
+Fitting and predicting dev ended at : 2019-12-03 00:44:00.517121, took : 0:00:16.279667 
+Accuracy for this model is : 0.885 
+Full process took: 2:14:57.676980 
+==========
+Model fine tuned for dm_0_dbow_words_1 : dm => 0, dbow_words => 1 
+Process for GridSearchCV began at: 2019-12-03 00:44:00.517330 
+Gridsearch CV ended at : 2019-12-03 02:57:36.414964, took : 2:13:35.897634 
+Best params: {'doc2vec__epochs': 20, 'doc2vec__epochs_infer': None, 'svm__C': 1, 'svm__kernel': 'rbf', 'doc2vec__hs': 1, 'svm__gamma': 'auto', 'doc2vec__vector_size': 100, 'doc2vec__window': 10, 'svm__degree': 3, 'doc2vec__alpha_infer': None} 
+Best score: 0.89 
+Evaluating on dev set 
+Process for dev set began at: 2019-12-03 02:57:36.415126 
+Fitting and predicting dev ended at : 2019-12-03 02:57:52.469721, took : 0:00:16.054595 
+Accuracy for this model is : 0.875 
+Full process took: 2:13:51.952391 
+==========
+Model fine tuned for dm_1_dbow_words_0 : dm => 1, dbow_words => 0 
+Process for GridSearchCV began at: 2019-12-03 02:57:52.469991 
+Gridsearch CV ended at : 2019-12-03 05:48:38.163111, took : 2:50:45.693120 
+Best params: {'doc2vec__epochs': 20, 'doc2vec__epochs_infer': None, 'svm__C': 1, 'svm__kernel': 'rbf', 'doc2vec__hs': 1, 'svm__gamma': 'scale', 'doc2vec__vector_size': 100, 'doc2vec__window': 15, 'svm__degree': 3, 'doc2vec__alpha_infer': None} 
+Best score: 0.85625 
+Evaluating on dev set 
+Process for dev set began at: 2019-12-03 05:48:38.163259 
+Fitting and predicting dev ended at : 2019-12-03 05:48:57.200753, took : 0:00:19.037494 
+Accuracy for this model is : 0.845 
+Full process took: 2:51:04.730762 
+==========
+Model fine tuned for dm_1_dbow_words_1 : dm => 1, dbow_words => 1 
+Process for GridSearchCV began at: 2019-12-03 05:48:57.200991 
+Gridsearch CV ended at : 2019-12-03 08:41:22.231450, took : 2:52:25.030459 
+Best params: {'doc2vec__epochs': 20, 'doc2vec__epochs_infer': None, 'svm__C': 1, 'svm__kernel': 'rbf', 'doc2vec__hs': 1, 'svm__gamma': 'scale', 'doc2vec__vector_size': 100, 'doc2vec__window': 10, 'svm__degree': 3, 'doc2vec__alpha_infer': None} 
+Best score: 0.85875 
+Evaluating on dev set 
+Process for dev set began at: 2019-12-03 08:41:22.231616 
+Fitting and predicting dev ended at : 2019-12-03 08:41:41.466859, took : 0:00:19.235243 
+Accuracy for this model is : 0.86 
+Full process took: 2:52:44.265868 
+==========

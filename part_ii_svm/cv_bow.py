@@ -25,7 +25,7 @@ if __name__ == '__main__':
   # Preparing .txt file
   curr_date = str(datetime.now())
   y, mo, d, h, mi, s = tuple(curr_date[:10].split('-') + curr_date[11:19].split(':'))
-  file_name_no_ext = "part_ii_svm/experiments/SVM_BOW_results_{0}_{1}_{2}_{3}_{4}_{5}".format(y, mo, d, h, mi, s)
+  file_name_no_ext = "./part_ii_svm/experiments/SVM_BOW_results_{0}_{1}_{2}_{3}_{4}_{5}".format(y, mo, d, h, mi, s)
 
   # Creating .txt file with logs
   f= open("{0}.txt".format(file_name_no_ext),"w+")

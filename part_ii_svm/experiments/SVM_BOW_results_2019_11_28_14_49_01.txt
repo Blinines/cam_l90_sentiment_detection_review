@@ -1,0 +1,134 @@
+Results for CV - SVM BOW - 2019-11-28 14:49:01.853058 
+==========
+Model fine tuned for feat_type_unigram_tf_idf_0_norm_True : feat => unigram, tf_idf => 0, norm => True 
+Process for GridSearchCV began at: 2019-11-28 14:49:01.853294 
+Gridsearch CV ended at : 2019-11-28 16:48:17.366255, took : 1:59:15.512961 
+Best params: {'svm__gamma': 10, 'svm__kernel': 'poly', 'svm__C': 0.1, 'svm__degree': 2} 
+Best score: 0.844375 
+Evaluating on dev set 
+Process for dev set began at: 2019-11-28 16:48:17.366366 
+Fitting and predicting dev ended at : 2019-11-28 16:48:27.610410, took : 0:00:10.244044 
+Accuracy for this model is : 0.87 
+Full process took: 1:59:25.757116 
+==========
+Model fine tuned for feat_type_unigram_tf_idf_0_norm_False : feat => unigram, tf_idf => 0, norm => False 
+Process for GridSearchCV began at: 2019-11-28 16:48:27.610653 
+Gridsearch CV ended at : 2019-11-28 18:34:49.103075, took : 1:46:21.492422 
+Best params: {'svm__gamma': 'scale', 'svm__kernel': 'linear', 'svm__C': 0.1, 'svm__degree': 2} 
+Best score: 0.818125 
+Evaluating on dev set 
+Process for dev set began at: 2019-11-28 18:34:49.103163 
+Fitting and predicting dev ended at : 2019-11-28 18:34:59.447929, took : 0:00:10.344766 
+Accuracy for this model is : 0.84 
+Full process took: 1:46:31.837276 
+==========
+Model fine tuned for feat_type_unigram_tf_idf_1_norm_True : feat => unigram, tf_idf => 1, norm => True 
+Process for GridSearchCV began at: 2019-11-28 18:34:59.448151 
+Gridsearch CV ended at : 2019-11-28 20:38:26.886455, took : 2:03:27.438304 
+Best params: {'svm__gamma': 10, 'svm__kernel': 'poly', 'svm__C': 0.1, 'svm__degree': 2} 
+Best score: 0.844375 
+Evaluating on dev set 
+Process for dev set began at: 2019-11-28 20:38:26.886562 
+Fitting and predicting dev ended at : 2019-11-28 20:38:37.067097, took : 0:00:10.180535 
+Accuracy for this model is : 0.87 
+Full process took: 2:03:37.618946 
+==========
+Model fine tuned for feat_type_unigram_tf_idf_1_norm_False : feat => unigram, tf_idf => 1, norm => False 
+Process for GridSearchCV began at: 2019-11-28 20:38:37.067313 
+Gridsearch CV ended at : 2019-11-28 22:37:24.038616, took : 1:58:46.971303 
+Best params: {'svm__gamma': 10, 'svm__kernel': 'poly', 'svm__C': 0.1, 'svm__degree': 2} 
+Best score: 0.844375 
+Evaluating on dev set 
+Process for dev set began at: 2019-11-28 22:37:24.038728 
+Fitting and predicting dev ended at : 2019-11-28 22:37:33.690848, took : 0:00:09.652120 
+Accuracy for this model is : 0.87 
+Full process took: 1:58:56.623535 
+==========
+Model fine tuned for feat_type_bigram_tf_idf_0_norm_True : feat => bigram, tf_idf => 0, norm => True 
+Process for GridSearchCV began at: 2019-11-28 22:37:33.691060 
+Gridsearch CV ended at : 2019-11-29 00:58:22.138449, took : 2:20:48.447389 
+Best params: {'svm__gamma': 'scale', 'svm__kernel': 'linear', 'svm__C': 10, 'svm__degree': 2} 
+Best score: 0.811875 
+Evaluating on dev set 
+Process for dev set began at: 2019-11-29 00:58:22.138555 
+Fitting and predicting dev ended at : 2019-11-29 00:58:36.304733, took : 0:00:14.166178 
+Accuracy for this model is : 0.78 
+Full process took: 2:21:02.613673 
+==========
+Model fine tuned for feat_type_bigram_tf_idf_0_norm_False : feat => bigram, tf_idf => 0, norm => False 
+Process for GridSearchCV began at: 2019-11-29 00:58:36.304946 
+Gridsearch CV ended at : 2019-11-29 03:14:34.602442, took : 2:15:58.297496 
+Best params: {'svm__gamma': 'scale', 'svm__kernel': 'linear', 'svm__C': 0.1, 'svm__degree': 2} 
+Best score: 0.79875 
+Evaluating on dev set 
+Process for dev set began at: 2019-11-29 03:14:34.602545 
+Fitting and predicting dev ended at : 2019-11-29 03:14:47.853649, took : 0:00:13.251104 
+Accuracy for this model is : 0.745 
+Full process took: 2:16:11.548703 
+==========
+Model fine tuned for feat_type_bigram_tf_idf_1_norm_True : feat => bigram, tf_idf => 1, norm => True 
+Process for GridSearchCV began at: 2019-11-29 03:14:47.853873 
+Gridsearch CV ended at : 2019-11-29 05:40:31.930559, took : 2:25:44.076686 
+Best params: {'svm__gamma': 'scale', 'svm__kernel': 'linear', 'svm__C': 10, 'svm__degree': 2} 
+Best score: 0.811875 
+Evaluating on dev set 
+Process for dev set began at: 2019-11-29 05:40:31.930660 
+Fitting and predicting dev ended at : 2019-11-29 05:40:46.366897, took : 0:00:14.436237 
+Accuracy for this model is : 0.78 
+Full process took: 2:25:58.513024 
+==========
+Model fine tuned for feat_type_bigram_tf_idf_1_norm_False : feat => bigram, tf_idf => 1, norm => False 
+Process for GridSearchCV began at: 2019-11-29 05:40:46.367110 
+Gridsearch CV ended at : 2019-11-29 08:02:35.950274, took : 2:21:49.583164 
+Best params: {'svm__gamma': 'scale', 'svm__kernel': 'linear', 'svm__C': 10, 'svm__degree': 2} 
+Best score: 0.811875 
+Evaluating on dev set 
+Process for dev set began at: 2019-11-29 08:02:35.950375 
+Fitting and predicting dev ended at : 2019-11-29 08:02:50.165999, took : 0:00:14.215624 
+Accuracy for this model is : 0.78 
+Full process took: 2:22:03.798889 
+==========
+Model fine tuned for feat_type_joint_tf_idf_0_norm_True : feat => joint, tf_idf => 0, norm => True 
+Process for GridSearchCV began at: 2019-11-29 08:02:50.166212 
+Gridsearch CV ended at : 2019-11-29 12:14:49.989038, took : 4:11:59.822826 
+Best params: {'svm__gamma': 'scale', 'svm__kernel': 'linear', 'svm__C': 10, 'svm__degree': 2} 
+Best score: 0.84125 
+Evaluating on dev set 
+Process for dev set began at: 2019-11-29 12:14:49.989147 
+Fitting and predicting dev ended at : 2019-11-29 12:15:11.431038, took : 0:00:21.441891 
+Accuracy for this model is : 0.86 
+Full process took: 4:12:21.264826 
+==========
+Model fine tuned for feat_type_joint_tf_idf_0_norm_False : feat => joint, tf_idf => 0, norm => False 
+Process for GridSearchCV began at: 2019-11-29 12:15:11.431258 
+Gridsearch CV ended at : 2019-11-29 16:05:40.337693, took : 3:50:28.906435 
+Best params: {'svm__gamma': 'scale', 'svm__kernel': 'linear', 'svm__C': 0.1, 'svm__degree': 2} 
+Best score: 0.838125 
+Evaluating on dev set 
+Process for dev set began at: 2019-11-29 16:05:40.337809 
+Fitting and predicting dev ended at : 2019-11-29 16:06:06.654537, took : 0:00:26.316728 
+Accuracy for this model is : 0.825 
+Full process took: 3:50:55.223279 
+==========
+Model fine tuned for feat_type_joint_tf_idf_1_norm_True : feat => joint, tf_idf => 1, norm => True 
+Process for GridSearchCV began at: 2019-11-29 16:06:06.654754 
+Gridsearch CV ended at : 2019-11-29 20:36:39.442809, took : 4:30:32.788055 
+Best params: {'svm__gamma': 'scale', 'svm__kernel': 'linear', 'svm__C': 10, 'svm__degree': 2} 
+Best score: 0.84125 
+Evaluating on dev set 
+Process for dev set began at: 2019-11-29 20:36:39.442925 
+Fitting and predicting dev ended at : 2019-11-29 20:37:02.474108, took : 0:00:23.031183 
+Accuracy for this model is : 0.86 
+Full process took: 4:30:55.819354 
+==========
+Model fine tuned for feat_type_joint_tf_idf_1_norm_False : feat => joint, tf_idf => 1, norm => False 
+Process for GridSearchCV began at: 2019-11-29 20:37:02.474366 
+Gridsearch CV ended at : 2019-11-30 00:59:48.251844, took : 4:22:45.777478 
+Best params: {'svm__gamma': 'scale', 'svm__kernel': 'linear', 'svm__C': 10, 'svm__degree': 2} 
+Best score: 0.84125 
+Evaluating on dev set 
+Process for dev set began at: 2019-11-30 00:59:48.251953 
+Fitting and predicting dev ended at : 2019-11-30 01:00:09.969783, took : 0:00:21.717830 
+Accuracy for this model is : 0.86 
+Full process took: 4:23:07.495417 
+==========

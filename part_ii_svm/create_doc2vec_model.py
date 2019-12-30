@@ -23,7 +23,7 @@ def read_corpus(files_path, tokens_only=False):
 
 def train_save(params, train_corpus, write=False):  
     ''' Training and saving all possible models that were not saved '''
-    if write: f= open("train_doc2vec_model_{0}.txt".format(str(datetime.now())[:10]),"w+")
+    if write: f= open("./part_ii_svm/experiments/train_doc2vec_model_{0}.txt".format(str(datetime.now())[:10]),"w+")
     existing_model = listdir('models_svm/')
 
     for param in itertools.product(*params):
